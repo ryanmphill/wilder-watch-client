@@ -13,7 +13,7 @@ import ApplicationRoutes from "./routes/ApplicationRoutes.jsx";
 
 const WilderWatch = () => {
     const [token, setTokenState] = useState(localStorage.getItem('auth_token'))
-    const [isWilderAdmin, setIsWilderState] = useState(localStorage.getItem('wilder_admin'))
+    const [isWilderAdmin, setIsAdminState] = useState(localStorage.getItem('wilder_admin'))
 
     const setToken = (newToken) => {
         localStorage.setItem('auth_token', newToken)

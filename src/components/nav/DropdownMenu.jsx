@@ -55,6 +55,7 @@ export const DropdownMenu = () => {
                   ? <div className="navbar__menuItem navbar__logout">
                     <Link className="dropdown--link" to="" onClick={() => {
                       localStorage.removeItem("auth_token")
+                      localStorage.removeItem("wilder_admin")
                       navigate("/", { replace: true })
                     }}>Logout</Link>
                   </div>

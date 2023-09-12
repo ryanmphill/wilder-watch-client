@@ -19,7 +19,7 @@ export const Login = ({ setToken, setAdmin }) => {
     loginUser(user).then(res => {
       if ("valid" in res && res.valid) {
         setToken(res.token)
-        setAdmin(res.staff)
+        setAdmin(res.isStaff)
         navigate("/")
       }
       else {
@@ -31,8 +31,8 @@ export const Login = ({ setToken, setAdmin }) => {
   // Autofill Username/Password by default streamline devolopment process 
   useEffect(
     () => {
-      username.current.value = "megducharme"
-      password.current.value = "ducharme"
+      username.current.value = "ryanmphill"
+      password.current.value = "password"
     },
     []
   )
