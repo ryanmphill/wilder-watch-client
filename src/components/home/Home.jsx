@@ -1,3 +1,5 @@
 export const Home = () => {
-    return <div></div>
+    return <div>
+        Welcome To WilderWatch
+    </div>
 }

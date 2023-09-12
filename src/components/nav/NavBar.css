@@ -2,8 +2,10 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    padding: 0;
+    padding: 0 0.75rem 0 0.25rem;
     animation: navFade 0.75s;
+    background-color: lightgray;
+    margin-top: 0;
 }
 
 @keyframes navFade {
@@ -42,23 +44,23 @@
     align-items: center;
     justify-content: flex-start;
     list-style-type: none;
-    height: 12vh;
+    height: 10vh;
 }
 
 /*Desktop View------------------------------------------------------------------*/
 @media (min-width: 420px) {
     #logoContainer {
-        height: 15vh;
+        height: 11vh;
     }
 
     #wilderTitle {
-        font-size: 1.75em;
+        font-size: 1.5em;
         font-weight: bolder;
     }
 }
 
 @media (min-width: 1080px) {
     #logoContainer {
-        height: 20vh;
+        height: 12vh;
     }
 }

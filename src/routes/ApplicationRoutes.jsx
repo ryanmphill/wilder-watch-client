@@ -9,6 +9,8 @@ import { NavBar } from "../components/nav/NavBar";
 import { Home } from "../components/home/Home";
 import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
+import CreateStudyForm from "../components/studies/CreateStudyForm";
+import { Authorized } from "../components/auth/Authorized";
 
 
 
@@ -22,6 +24,9 @@ const ApplicationRoutes = ({token, setToken, isAdmin, setAdmin}) => {
                     <Route
                         index element={<Home />}
                     />
+                    <Route element={<Authorized token={token}/>}>
+                        <Route element={<CreateStudyForm />} path="/study/new" />
+                    </Route>
                 </Route>
             </>
         ));

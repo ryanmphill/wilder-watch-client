@@ -48,13 +48,15 @@ export const DropdownMenu = () => {
         </button>
         {isOpen && <>
             <section className="dropdown-content" onClick={toggleDropdown}>
-            <Link className="dropdown--link" to="/">Home</Link>
+              <Link className="dropdown--link" to="/">Home</Link>
               <Link className="dropdown--link" to="/">Profile</Link>
-              { // Logout button
+              { // Links for logged in users
                 localStorage.getItem("auth_token")
-                  ? <div className="navbar__menuItem navbar__logout">
+                  ? <div>
+                    <Link className="dropdown--link" to="/study/new">+ New Study</Link>
                     <Link className="dropdown--link" to="" onClick={() => {
                       localStorage.removeItem("auth_token")
+                      localStorage.removeItem("wilder_admin")
                       navigate("/", { replace: true })
                     }}>Logout</Link>
                   </div>
