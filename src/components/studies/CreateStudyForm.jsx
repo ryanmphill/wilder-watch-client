@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllRegions } from "../../managers/RegionManager";
+import { getAllStudyTypes } from "../../managers/StudyTypeManager";
 
 const CreateStudyForm = () => {
     const [study, updateStudy] = useState({
@@ -16,8 +18,16 @@ const CreateStudyForm = () => {
     const [studyTypes, setStudyTypes] = useState([])
     const [formError, setFormError] = useState(false);
 
+    useEffect(
+        () => {
+            getAllRegions().then((data) => setRegions(data))
+            getAllStudyTypes().then((data) => setStudyTypes(data))
+        },
+        []
+    )
+
     const updateForm = (e, updateFunc, dataType) => {
-        let studyCopy = { ...formData };
+        let studyCopy = { ...study };
         if (dataType === "str") {
             updateFunc({ ...studyCopy, [e.target.name]: e.target.value });
         } else if (dataType === "int") {
@@ -42,14 +52,14 @@ const CreateStudyForm = () => {
             <h2 className="studyFormHeader">Launch a New Study 🚀</h2>
 
             <fieldset>
-                <div>
+                <div className="form-group">
                     <label htmlFor="studyTitle" className="studyLabel">Title:</label>
                     <input
                         id="studyTitle"
                         required autoFocus
                         type="text"
                         name="title"
-                        // className="form-control"
+                        className="form-control"
                         placeholder="Add a title for your study"
                         value={study.title}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -182,6 +192,22 @@ const CreateStudyForm = () => {
                             </option>
                         ))}
                     </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="studyImgUrl" className="studyLabel">Image Url:</label>
+                    <input
+                        id="studyImgUrl"
+                        required autoFocus
+                        type="text"
+                        name="image_url"
+                        className="form-control"
+                        placeholder="Add an image url (optional)"
+                        value={study.image_url}
+                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                    />
                 </div>
             </fieldset>
 
