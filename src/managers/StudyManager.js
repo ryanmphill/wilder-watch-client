@@ -17,3 +17,15 @@ export const getSingleStudy = (id) => {
     },
   }).then((res) => res.json());
 }
+
+export const createNewStudy = (newStudy) => {
+    return fetch(`http://localhost:8000/studies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+    },
+    body: JSON.stringify(newStudy)
+  }).then((res) => res.json());
+}

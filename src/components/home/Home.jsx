@@ -3,17 +3,7 @@ import { getAllStudies } from "../../managers/StudyManager"
 import { Link } from "react-router-dom"
 import { getCurrentUser } from "../../managers/AuthManager"
 
-export const Home = () => {
-    const [studies, setStudies] = useState([])
-    const [currentUserId, setCurrentUserId] = useState(0)
-
-    const fetchStudies = () => {
-        getAllStudies().then(data => setStudies(data))
-    }
-
-    const fetchCurrentUserId = () => {
-        getCurrentUser().then(data => setCurrentUserId(data.id))
-    }
+export const Home = ({ fetchCurrentUserId, fetchStudies, studies, currentUserId}) => {
 
     useEffect(
         () => {

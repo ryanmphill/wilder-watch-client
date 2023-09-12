@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { createNewStudy } from "../../managers/StudyManager";
+import { useNavigate } from "react-router-dom";
 import { getAllRegions } from "../../managers/RegionManager";
 import { getAllStudyTypes } from "../../managers/StudyTypeManager";
 
@@ -8,15 +10,16 @@ const CreateStudyForm = () => {
         subject: "",
         summary: "",
         details: "",
-        start_date: "",
-        end_date: "",
-        study_type: 0,
-        region: 0,
-        image_url: ""
+        startDate: "",
+        endDate: "",
+        studyTypeId: 0,
+        regionId: 0,
+        imageUrl: ""
     })
     const [regions, setRegions] = useState([])
     const [studyTypes, setStudyTypes] = useState([])
     const [formError, setFormError] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(
         () => {
@@ -37,14 +40,22 @@ const CreateStudyForm = () => {
 
     const handleSaveStudy = (e) => {
         e.preventDefault();
-        const requiredStr = ['title', 'subject', 'summary', 'details', 'start_date']
-        const requiredNum = ['study_type', 'region']
+        const requiredStr = ['title', 'subject', 'summary', 'details', 'startDate']
+        const requiredNum = ['studyTypeId', 'regionId']
         const formFilled = requiredStr.every(field => study[field].length > 0) && requiredNum.every(field => study[field] > 0)
 
         if (!formFilled) {
             setFormError(true);
             return;
         }
+
+        // Send the new study to the API
+        createNewStudy(study)
+            .then((newStudy) => {
+                const newStudyId = newStudy.id
+                navigate(`/study/${newStudyId}`)
+            })
+            .catch((e) => console.error(e))
     }
 
     return <article>
@@ -124,9 +135,9 @@ const CreateStudyForm = () => {
                         id="studyStartDate"
                         required autoFocus
                         type="date"
-                        name="start_date"
+                        name="startDate"
                         className="form-control"
-                        value={study.start_date}
+                        value={study.startDate}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
@@ -139,9 +150,9 @@ const CreateStudyForm = () => {
                         id="studyEndDate"
                         required autoFocus
                         type="date"
-                        name="end_date"
+                        name="endDate"
                         className="form-control"
-                        value={study.end_date}
+                        value={study.endDate}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
@@ -149,18 +160,18 @@ const CreateStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="selectStudyType" className="label-bold">Study Type:</label>
+                    <label htmlFor="selectstudyTypeId" className="label-bold">Study Type:</label>
                     <select
-                        id="selectStudyType"
-                        name="study_type"
-                        value={study.study_type}
+                        id="selectstudyTypeId"
+                        name="studyTypeId"
+                        value={study.studyTypeId}
                         onChange={(e) => updateForm(e, updateStudy, "int")}
                         className="form-control"
                     >
                         <option value="0">Select Type of Study</option>
                         {studyTypes.map((studyType) => (
                             <option
-                                key={`studyType--${studyType.id}`}
+                                key={`studyTypeId--${studyType.id}`}
                                 value={studyType.id}
                             >
                                 {studyType.label}
@@ -172,20 +183,20 @@ const CreateStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="selectRegion" className="label-bold">
+                    <label htmlFor="selectregionId" className="label-bold">
                         Where is your study taking place?:
                     </label>
                     <select
-                        id="selectRegion"
-                        name="region"
-                        value={study.region}
+                        id="selectregionId"
+                        name="regionId"
+                        value={study.regionId}
                         onChange={(e) => updateForm(e, updateStudy, "int")}
                         className="form-control"
                     >
-                        <option value="0">Select a Region</option>
+                        <option value="0">Select a regionId</option>
                         {regions.map((region) => (
                             <option
-                                key={`region--${region.id}`}
+                                key={`regionId--${region.id}`}
                                 value={region.id}
                             >
                                 {region.label}
@@ -202,10 +213,10 @@ const CreateStudyForm = () => {
                         id="studyImgUrl"
                         required autoFocus
                         type="text"
-                        name="image_url"
+                        name="imageUrl"
                         className="form-control"
                         placeholder="Add an image url (optional)"
-                        value={study.image_url}
+                        value={study.imageUrl}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>

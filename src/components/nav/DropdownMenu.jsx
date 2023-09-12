@@ -3,7 +3,7 @@ import './DropdownMenu.css' // Import CSS styles for the dropdown menu
 import { Link, useNavigate } from 'react-router-dom';
 import burgerIcon from "../../assets/burgericon.svg"
 
-export const DropdownMenu = () => {
+export const DropdownMenu = ({ refreshUser, refreshStudies }) => {
     const [isOpen, setIsOpen] = useState(false) // State to track if the dropdown is open or closed
   
     const toggleDropdown = () => {
@@ -57,6 +57,8 @@ export const DropdownMenu = () => {
                     <Link className="dropdown--link" to="" onClick={() => {
                       localStorage.removeItem("auth_token")
                       localStorage.removeItem("wilder_admin")
+                      refreshUser()
+                      refreshStudies()
                       navigate("/", { replace: true })
                     }}>Logout</Link>
                   </div>
