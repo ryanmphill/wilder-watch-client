@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 import { DropdownMenu } from "./DropdownMenu"
-import wilderLogo from "../../assets/react.svg"
+import wilderLogo from "../../assets/mountains.png"
 
 export const NavBar = () => {
     const navigate = useNavigate()
