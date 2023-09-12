@@ -1,0 +1,27 @@
+.controls {
+    display: flex;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 50%;*/
+    /*margin: 1.25rem 0;*/
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    /*transform: translateX(-50%);*/
+  }
+  
+  .controls > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 2rem;
+    width: 2rem;
+    background: #F3813F;
+    color: #fff;
+    border-radius: 100%;
+    border: 0;
+  }
+  .controls > button:first-child {
+    margin-right: 0.25rem;
+  }
