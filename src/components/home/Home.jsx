@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllStudies } from "../../managers/StudyManager"
+import { Link } from "react-router-dom"
 
 export const Home = () => {
     const [studies, setStudies] = useState([])
@@ -16,7 +17,6 @@ export const Home = () => {
     )
 
     return <article>
-        <h2>Welcome To WilderWatch</h2>
         <section>
             <div>
 
@@ -34,12 +34,15 @@ export const Home = () => {
 
             </div>
         </section>
+
+        <h2>Welcome To WilderWatch</h2>
+        
         <section>
             {
                 studies.map((study) => 
                     <div key={`studyhome--${study.id}`}>
                         <div>------------------------------------------------</div>
-                        <div>{study.title}</div>
+                        <div><Link to={`study/${study.id}`}>{study.title}</Link></div>
                         <div>{study.summary}</div>
                         <div>------------------------------------------------</div>
                     </div>)

@@ -11,6 +11,7 @@ import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
 import CreateStudyForm from "../components/studies/CreateStudyForm";
 import { Authorized } from "../components/auth/Authorized";
+import StudyDetails from "../components/studies/StudyDetails";
 
 
 
@@ -23,6 +24,10 @@ const ApplicationRoutes = ({token, setToken, isAdmin, setAdmin}) => {
                 <Route element={<NavBar />} path="/">
                     <Route
                         index element={<Home />}
+                    />
+                    <Route
+                        element={<StudyDetails />}
+                        path="/study/:studyId"
                     />
                     <Route element={<Authorized token={token}/>}>
                         <Route element={<CreateStudyForm />} path="/study/new" />

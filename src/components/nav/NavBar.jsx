@@ -20,7 +20,9 @@ export const NavBar = () => {
                 <DropdownMenu />
             </li>
         </ul>
-        <Outlet />
+        <div id="main-content">
+            <Outlet />
+        </div>
         </div>
     )
 }
