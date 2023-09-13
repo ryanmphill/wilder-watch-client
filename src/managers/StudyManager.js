@@ -45,3 +45,18 @@ export const editStudy = (updatedStudy, pk) => {
     }
   });
 }
+
+export const deleteStudy = (pk) => {
+  return fetch(`http://localhost:8000/studies/${pk}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then((res) => {
+    if (res.status != 204) {
+      return res.json()
+    }
+  });
+}
