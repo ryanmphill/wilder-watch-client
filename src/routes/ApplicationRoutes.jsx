@@ -16,6 +16,7 @@ import { getCurrentUser } from "../managers/AuthManager";
 import { getAllStudies } from "../managers/StudyManager";
 import { useState } from "react";
 import EditStudyForm from "../components/studies/EditStudyForm";
+import AddObservation from "../components/studies/AddObservation";
 
 
 
@@ -56,6 +57,7 @@ const ApplicationRoutes = ({token, setToken, isAdmin, setAdmin}) => {
                     <Route element={<Authorized token={token}/>}>
                         <Route element={<CreateStudyForm />} path="/study/new" />
                         <Route element={<EditStudyForm />} path="/study/edit/:studyId" />
+                        <Route element={<AddObservation />} path="/study/:studyId/add_observation" />
                     </Route>
                 </Route>
             </>
