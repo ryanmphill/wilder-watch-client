@@ -4,7 +4,6 @@ import {
     Route,
     RouterProvider,
   } from "react-router-dom";
-import App from "../App";
 import { NavBar } from "../components/nav/NavBar";
 import { Home } from "../components/home/Home";
 import { Login } from "../components/auth/Login";
@@ -12,9 +11,6 @@ import { Register } from "../components/auth/Register";
 import CreateStudyForm from "../components/studies/CreateStudyForm";
 import { Authorized } from "../components/auth/Authorized";
 import StudyDetails from "../components/studies/StudyDetails";
-import { getCurrentUser } from "../managers/AuthManager";
-import { getAllStudies } from "../managers/StudyManager";
-import { useState } from "react";
 import EditStudyForm from "../components/studies/EditStudyForm";
 import AddObservation from "../components/studies/AddObservation";
 import ApplicationLayout from "../components/layouts/ApplicationLayout";
