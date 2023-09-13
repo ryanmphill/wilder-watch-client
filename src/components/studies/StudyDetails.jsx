@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getSingleStudy } from "../../managers/StudyManager"
 import { useEffect, useState } from "react"
 
@@ -8,6 +8,8 @@ const StudyDetails = () => {
 
     const [study, setStudy] = useState({})
     const [observations, setObservations] = useState([])
+
+    const navigate = useNavigate()
 
     const fetchStudy = () => {
         getSingleStudy(studyId).then(data => {
@@ -31,6 +33,11 @@ const StudyDetails = () => {
         <div>Type of Study: {study?.study_type?.label}</div>
         <div>Starting Date: {study.start_date}</div>
         <div>Region: {study?.region?.label}</div>
+        <div>
+            <button
+                onClick={() => {navigate(`/study/${studyId}/add_observation`)}}
+            >Participate</button>
+        </div>
 
         <section>
             <h3>Observations from Study Participants</h3>
