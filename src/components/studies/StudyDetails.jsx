@@ -7,9 +7,13 @@ const StudyDetails = () => {
     const { studyId } = useParams()
 
     const [study, setStudy] = useState({})
+    const [observations, setObservations] = useState([])
 
     const fetchStudy = () => {
-        getSingleStudy(studyId).then(data => setStudy(data))
+        getSingleStudy(studyId).then(data => {
+            setStudy(data)
+            setObservations(data.observations)
+        })
     }
 
     useEffect(
@@ -27,6 +31,19 @@ const StudyDetails = () => {
         <div>Type of Study: {study?.study_type?.label}</div>
         <div>Starting Date: {study.start_date}</div>
         <div>Region: {study?.region?.label}</div>
+
+        <section>
+            <h3>Observations from Study Participants</h3>
+            {
+                observations.length > 0 &&
+                study.observations.map((observation) => 
+                <div key={`observation--${observation.id}`}>
+                    <div>----------------------------</div>
+                    <div>Coordinates: {observation.latitude}, {observation.longitude}</div>
+                    <div>Observed By: {observation.participant_name}</div>
+                </div>)
+            }
+        </section>
     </article>
 }
 export default StudyDetails
