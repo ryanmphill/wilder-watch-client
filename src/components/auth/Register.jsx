@@ -1,9 +1,12 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
+import { AuthContext } from "../../Context"
 
-export const Register = ({ setToken, setAdmin }) => {
+export const Register = () => {
+  const {setToken, setAdmin} = useContext(AuthContext)
+
   const firstName = useRef()
   const lastName = useRef()
   const email = useRef()
