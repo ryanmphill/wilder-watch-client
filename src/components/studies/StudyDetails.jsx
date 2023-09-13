@@ -16,7 +16,7 @@ const StudyDetails = () => {
         () => {
             fetchStudy()
         },
-        []
+        [studyId]
     )
 
     return <article>

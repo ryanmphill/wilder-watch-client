@@ -3,7 +3,7 @@ import "./NavBar.css"
 import { DropdownMenu } from "./DropdownMenu"
 import wilderLogo from "../../assets/mountains.png"
 
-export const NavBar = () => {
+export const NavBar = ({ fetchCurrentUserId, fetchStudies }) => {
     const navigate = useNavigate()
 
     return (
@@ -17,7 +17,7 @@ export const NavBar = () => {
                 
             </li>
             <li className="navbar__item navbar__menu">
-                <DropdownMenu />
+                <DropdownMenu refreshUser={fetchCurrentUserId} refreshStudies={fetchStudies} />
             </li>
         </ul>
         <div id="main-content">

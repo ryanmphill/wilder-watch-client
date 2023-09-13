@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { createNewStudy } from "../../managers/StudyManager";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getAllRegions } from "../../managers/RegionManager";
 import { getAllStudyTypes } from "../../managers/StudyTypeManager";
+import { editStudy, getSingleStudy } from "../../managers/StudyManager";
 
-const CreateStudyForm = () => {
+const EditStudyForm = () => {
+    const { studyId } = useParams()
+
     const [study, updateStudy] = useState({
         title: "",
         subject: "",
@@ -20,6 +22,30 @@ const CreateStudyForm = () => {
     const [studyTypes, setStudyTypes] = useState([])
     const [formError, setFormError] = useState(false);
     const navigate = useNavigate()
+
+    const fetchStudy = () => {
+        getSingleStudy(studyId).then(data => {
+            let studyCopy = { ...study,
+                title: data.title,
+                subject: data.subject,
+                summary: data.summary,
+                details: data.details,
+                startDate: data.start_date,
+                endDate: data.end_date ? data.end_date : "",
+                studyTypeId: data.study_type.id,
+                regionId: data.region.id,
+                imageUrl: data.image_url
+             };
+             updateStudy(studyCopy)
+        })
+    }
+
+    useEffect(
+        () => {
+            fetchStudy()
+        },
+        [studyId]
+    )
 
     useEffect(
         () => {
@@ -49,18 +75,17 @@ const CreateStudyForm = () => {
             return;
         }
 
-        // Send the new study to the API
-        createNewStudy(study)
-            .then((newStudy) => {
-                const newStudyId = newStudy.id
-                navigate(`/study/${newStudyId}`)
+        // Send the updated study to the API
+        editStudy(study, studyId)
+            .then(() => {
+                navigate(`/study/${studyId}`)
             })
             .catch((e) => console.error(e))
     }
 
     return <article>
         <form className="studyForm">
-            <h2 className="studyFormHeader">Launch a New Study 🚀</h2>
+            <h2 className="studyFormHeader">Update your Study 🖊️</h2>
 
             <fieldset>
                 <div className="form-group">
@@ -233,4 +258,4 @@ const CreateStudyForm = () => {
         </form>
     </article>
 }
-export default CreateStudyForm
+export default EditStudyForm
