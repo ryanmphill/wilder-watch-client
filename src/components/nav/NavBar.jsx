@@ -2,8 +2,11 @@ import { Outlet, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 import { DropdownMenu } from "./DropdownMenu"
 import wilderLogo from "../../assets/mountains.png"
+import { useContext } from "react"
+import { AuthContext } from "../../Context"
 
-export const NavBar = ({ fetchCurrentUserId, fetchStudies }) => {
+export const NavBar = () => {
+    const { fetchCurrentUserId } = useContext(AuthContext)
     const navigate = useNavigate()
 
     return (
@@ -17,7 +20,7 @@ export const NavBar = ({ fetchCurrentUserId, fetchStudies }) => {
                 
             </li>
             <li className="navbar__item navbar__menu">
-                <DropdownMenu refreshUser={fetchCurrentUserId} refreshStudies={fetchStudies} />
+                <DropdownMenu refreshUser={fetchCurrentUserId} />
             </li>
         </ul>
         <div id="main-content">

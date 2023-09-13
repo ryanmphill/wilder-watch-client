@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { deleteStudy, getAllStudies } from "../../managers/StudyManager"
 import { Link, useNavigate } from "react-router-dom"
-import { getCurrentUser } from "../../managers/AuthManager"
+import { AuthContext } from "../../Context"
 
-export const Home = ({ fetchCurrentUserId, fetchStudies, studies, currentUserId}) => {
+export const Home = () => {
+    const { currentUserId, fetchCurrentUserId } = useContext(AuthContext)
 
     const [confirmation, showConfirmation] = useState(0)
+    const [studies, setStudies] = useState([])
     const navigate = useNavigate()
+
+    const fetchStudies = () => {
+        getAllStudies().then(data => setStudies(data))
+    }
 
     useEffect(
         () => {
