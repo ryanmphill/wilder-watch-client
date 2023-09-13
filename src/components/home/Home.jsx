@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { getAllStudies } from "../../managers/StudyManager"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getCurrentUser } from "../../managers/AuthManager"
 
 export const Home = ({ fetchCurrentUserId, fetchStudies, studies, currentUserId}) => {
+
+    const navigate = useNavigate()
 
     useEffect(
         () => {
@@ -44,7 +46,7 @@ export const Home = ({ fetchCurrentUserId, fetchStudies, studies, currentUserId}
                         {
                             study?.author?.id === currentUserId &&
                             <>
-                                <button>Edit</button>
+                                <button onClick={() => navigate(`/study/edit/${study.id}`)}>Edit</button>
                                 <button>Delete</button>
                             </>
                         }
