@@ -23,8 +23,13 @@ const CreateStudyForm = () => {
 
     useEffect(
         () => {
-            getAllRegions().then((data) => setRegions(data))
-            getAllStudyTypes().then((data) => setStudyTypes(data))
+            const fetchRegionsAndTypes = async () => {
+                const regionData = await getAllRegions()
+                setRegions(regionData)
+                const typeData = await getAllStudyTypes()
+                setStudyTypes(typeData)
+            }
+            fetchRegionsAndTypes()
         },
         []
     )
@@ -38,7 +43,7 @@ const CreateStudyForm = () => {
         }
     }
 
-    const handleSaveStudy = (e) => {
+    const handleSaveStudy = async (e) => {
         e.preventDefault();
         const requiredStr = ['title', 'subject', 'summary', 'details', 'startDate']
         const requiredNum = ['studyTypeId', 'regionId']
@@ -50,12 +55,14 @@ const CreateStudyForm = () => {
         }
 
         // Send the new study to the API
-        createNewStudy(study)
-            .then((newStudy) => {
-                const newStudyId = newStudy.id
-                navigate(`/study/${newStudyId}`)
-            })
-            .catch((e) => console.error(e))
+        try {
+            const responseStudy = await createNewStudy(study)
+            const newStudyId = await responseStudy.id
+            navigate(`/study/${newStudyId}`)
+        } catch (error) {
+            console.error(error)
+        }
+            
     }
 
     return <article>

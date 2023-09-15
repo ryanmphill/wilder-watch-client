@@ -16,7 +16,7 @@ export const Register = () => {
   const [showPasswordDialog, setShowDialog] = useState(false)
   const navigate = useNavigate()
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
 
     if (password.current.value === verifyPassword.current.value) {
@@ -28,14 +28,17 @@ export const Register = () => {
         password: password.current.value
       }
 
-      registerUser(newUser)
-        .then(res => {
-          if ("valid" in res && res.valid) {
-            setToken(res.token)
-            setAdmin(res.isStaff)
-            navigate("/")
-          }
-        })
+      try {
+        const res = await registerUser(newUser)
+        if ("valid" in res && res.valid) {
+          setToken(res.token)
+          setAdmin(res.isStaff)
+          navigate("/")
+        }
+      } catch (error) {
+        console.error(error)
+      }
+        
     } else {
       setShowDialog(true)
     }

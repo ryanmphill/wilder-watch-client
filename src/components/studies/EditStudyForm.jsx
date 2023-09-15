@@ -23,21 +23,21 @@ const EditStudyForm = () => {
     const [formError, setFormError] = useState(false);
     const navigate = useNavigate()
 
-    const fetchStudy = () => {
-        getSingleStudy(studyId).then(data => {
-            let studyCopy = { ...study,
-                title: data.title,
-                subject: data.subject,
-                summary: data.summary,
-                details: data.details,
-                startDate: data.start_date,
-                endDate: data.end_date ? data.end_date : "",
-                studyTypeId: data.study_type.id,
-                regionId: data.region.id,
-                imageUrl: data.image_url
-             };
-             updateStudy(studyCopy)
-        })
+    const fetchStudy = async () => {
+        const studyJSON = await getSingleStudy(studyId)
+        let studyCopy = {
+            ...study,
+            title: studyJSON.title,
+            subject: studyJSON.subject,
+            summary: studyJSON.summary,
+            details: studyJSON.details,
+            startDate: studyJSON.start_date,
+            endDate: studyJSON.end_date ? studyJSON.end_date : "",
+            studyTypeId: studyJSON.study_type.id,
+            regionId: studyJSON.region.id,
+            imageUrl: studyJSON.image_url
+        };
+        updateStudy(studyCopy)
     }
 
     useEffect(
@@ -49,8 +49,13 @@ const EditStudyForm = () => {
 
     useEffect(
         () => {
-            getAllRegions().then((data) => setRegions(data))
-            getAllStudyTypes().then((data) => setStudyTypes(data))
+            const fetchRegionsAndTypes = async () => {
+                const regionData = await getAllRegions()
+                setRegions(regionData)
+                const typeData = await getAllStudyTypes()
+                setStudyTypes(typeData)
+            }
+            fetchRegionsAndTypes()
         },
         []
     )
@@ -64,7 +69,7 @@ const EditStudyForm = () => {
         }
     }
 
-    const handleSaveStudy = (e) => {
+    const handleSaveStudy = async (e) => {
         e.preventDefault();
         const requiredStr = ['title', 'subject', 'summary', 'details', 'startDate']
         const requiredNum = ['studyTypeId', 'regionId']
@@ -76,11 +81,12 @@ const EditStudyForm = () => {
         }
 
         // Send the updated study to the API
-        editStudy(study, studyId)
-            .then(() => {
-                navigate(`/study/${studyId}`)
-            })
-            .catch((e) => console.error(e))
+        try {
+            await editStudy(study, studyId)
+            navigate(`/study/${studyId}`)
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     return <article>

@@ -10,8 +10,9 @@ export const Home = () => {
     const [studies, setStudies] = useState([])
     const navigate = useNavigate()
 
-    const fetchStudies = () => {
-        getAllStudies().then(data => setStudies(data))
+    const fetchStudies = async () => {
+        const data = await getAllStudies()
+        setStudies(data)
     }
 
     useEffect(
@@ -21,6 +22,15 @@ export const Home = () => {
         },
         []
     )
+
+    const handleDeleteClick = async (id) => {
+        try {
+            await deleteStudy(id)
+            fetchStudies()
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     return <article>
         <section>
@@ -59,11 +69,7 @@ export const Home = () => {
                                         ? <button onClick={() => showConfirmation(study.id)}>Delete</button>
                                         : <>
                                             Are you sure?
-                                            <button onClick={() => {
-                                                deleteStudy(study.id)
-                                                    .then(() => fetchStudies())
-                                                    .catch(err => console.error(err))
-                                            }}
+                                            <button onClick={() => {handleDeleteClick(study.id)}}
                                                 >Delete</button>
                                             <button onClick={() => showConfirmation(0)}>Cancel</button>
                                         </>

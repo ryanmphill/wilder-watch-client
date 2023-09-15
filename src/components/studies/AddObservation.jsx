@@ -31,7 +31,7 @@ const AddObservation = () => {
         }
     }
 
-    const handleSaveObservation = (e) => {
+    const handleSaveObservation = async (e) => {
         e.preventDefault();
         const requiredStr = ['date']
         const formFilled = requiredStr.every(field => observation[field].length > 0)
@@ -42,11 +42,12 @@ const AddObservation = () => {
         }
 
         // Send the new observation to the API
-        addObservation(observation, studyId)
-            .then(() => {
-                navigate(`/study/${studyId}`)
-            })
-            .catch((e) => console.error(e))
+        try {
+            await addObservation(observation, studyId)
+            navigate(`/study/${studyId}`)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return <article>
