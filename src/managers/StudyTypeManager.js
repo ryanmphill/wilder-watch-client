@@ -1,9 +1,10 @@
-export const getAllStudyTypes = () => {
-    return fetch(`http://localhost:8000/study_types`, {
+export const getAllStudyTypes = async () => {
+    const res = await fetch(`http://localhost:8000/study_types`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-  }).then((res) => res.json());
+  });
+  return await res.json();
 }

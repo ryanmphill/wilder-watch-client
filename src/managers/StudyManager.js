@@ -1,25 +1,27 @@
-export const getAllStudies = () => {
-    return fetch(`http://localhost:8000/studies`, {
+export const getAllStudies = async () => {
+    const res = await fetch(`http://localhost:8000/studies`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-  }).then((res) => res.json());
+  });
+  return await res.json();
 }
 
-export const getSingleStudy = (id) => {
-    return fetch(`http://localhost:8000/studies/${id}`, {
+export const getSingleStudy = async (id) => {
+    const res = await fetch(`http://localhost:8000/studies/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-  }).then((res) => res.json());
+  });
+  return await res.json();
 }
 
-export const createNewStudy = (newStudy) => {
-  return fetch(`http://localhost:8000/studies`, {
+export const createNewStudy = async (newStudy) => {
+  const res = await fetch(`http://localhost:8000/studies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,11 +29,12 @@ export const createNewStudy = (newStudy) => {
       "Authorization": `Token ${localStorage.getItem("auth_token")}`,
     },
     body: JSON.stringify(newStudy)
-  }).then((res) => res.json());
+  });
+  return await res.json();
 }
 
-export const editStudy = (updatedStudy, pk) => {
-  return fetch(`http://localhost:8000/studies/${pk}`, {
+export const editStudy = async (updatedStudy, pk) => {
+  const res = await fetch(`http://localhost:8000/studies/${pk}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -39,24 +42,22 @@ export const editStudy = (updatedStudy, pk) => {
       "Authorization": `Token ${localStorage.getItem("auth_token")}`,
     },
     body: JSON.stringify(updatedStudy)
-  }).then((res) => {
-    if (res.status != 204) {
-      return res.json()
-    }
   });
+  if (res.status != 204) {
+    return await res.json();
+  }
 }
 
-export const deleteStudy = (pk) => {
-  return fetch(`http://localhost:8000/studies/${pk}`, {
+export const deleteStudy = async (pk) => {
+  const res = await fetch(`http://localhost:8000/studies/${pk}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
       "Authorization": `Token ${localStorage.getItem("auth_token")}`,
     },
-  }).then((res) => {
-    if (res.status != 204) {
-      return res.json()
-    }
   });
+  if (res.status != 204) {
+    return await res.json();
+  }
 }

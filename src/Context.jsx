@@ -19,9 +19,10 @@ export const AuthProvider = ({ children }) => {
         setIsAdminState(isStaff)
     }
 
-    const fetchCurrentUserId = () => {
+    const fetchCurrentUserId = async () => {
         if (localStorage.getItem("auth_token")) {
-            getCurrentUser().then(data => setCurrentUserId(data.id))
+            const data = await getCurrentUser()
+            setCurrentUserId(data.id)
         } else {
             setCurrentUserId(0)
         }

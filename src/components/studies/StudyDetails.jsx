@@ -11,11 +11,11 @@ const StudyDetails = () => {
 
     const navigate = useNavigate()
 
-    const fetchStudy = () => {
-        getSingleStudy(studyId).then(data => {
-            setStudy(data)
-            setObservations(data.observations)
-        })
+    const fetchStudy = async () => {
+        const studyJSON = await getSingleStudy(studyId)
+        setStudy(studyJSON)
+        setObservations(studyJSON.observations)
+
     }
 
     useEffect(

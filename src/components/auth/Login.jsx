@@ -10,7 +10,7 @@ export const Login = () => {
   const navigate = useNavigate()
   const [isUnsuccessful, setisUnsuccessful] = useState(false)
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
 
     const user = {
@@ -18,7 +18,8 @@ export const Login = () => {
       password: password.current.value
     }
 
-    loginUser(user).then(res => {
+    try {
+      const res = await loginUser(user)
       if ("valid" in res && res.valid) {
         setToken(res.token)
         setAdmin(res.isStaff)
@@ -27,7 +28,10 @@ export const Login = () => {
       else {
         setisUnsuccessful(true)
       }
-    })
+    } catch (error) {
+      console.error(error)
+      window.alert("An error occured while logging in")
+    }
   }
   /*--------------------------------------------------------------------*/
   // Autofill Username/Password by default streamline devolopment process 

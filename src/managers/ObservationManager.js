@@ -1,5 +1,5 @@
-export const addObservation = (observation, pk) => {
-    return fetch(`http://localhost:8000/studies/${pk}/add_observation`, {
+export const addObservation = async (observation, pk) => {
+    const res = await fetch(`http://localhost:8000/studies/${pk}/add_observation`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -7,5 +7,6 @@ export const addObservation = (observation, pk) => {
             "Authorization": `Token ${localStorage.getItem("auth_token")}`,
         },
         body: JSON.stringify(observation)
-    }).then((res) => res.json());
+    });
+    return await res.json();
 }
