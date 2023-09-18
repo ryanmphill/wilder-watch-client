@@ -42,7 +42,9 @@ const StudyDetails = () => {
 
         <section>
             <h3>Observations from Study Participants</h3>
-            <StudyMap observations={observations}/>
+            <StudyMap observations={observations}
+            centerLon={study.average_longitude}
+            centerLat={study.average_latitude} />
             {
                 observations.length > 0 &&
                 observations.map((observation) => 

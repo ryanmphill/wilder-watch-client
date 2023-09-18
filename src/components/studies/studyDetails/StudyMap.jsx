@@ -11,7 +11,7 @@ import Map, {
   import './studyMap.css';
   
   
-  const StudyMap = ({ observations }) => {
+  const StudyMap = ({ observations, centerLon, centerLat }) => {
   
     const [popupDisplay, setPopupDisplay] = useState(null)
     const [currentGeolocation, setCurrentGeolocation] = useState(null)
@@ -49,8 +49,15 @@ import Map, {
     ), [observations]);
     
     const API_KEY = import.meta.env.VITE_MAPBOX_TOKEN
+
+    const startingView = {
+        longitude: centerLon,
+        latitude: centerLat,
+        zoom: 1
+      }
   
     return (
+    centerLon && centerLat &&
       <section className="studyMapContainer">
         <div>
           <h3>Observations</h3>
@@ -59,16 +66,15 @@ import Map, {
         <Map
         mapboxAccessToken={API_KEY}
         initialViewState={{
-          longitude: 0,
-          latitude: 0,
-          zoom: 1
+          longitude: centerLon,
+          latitude: centerLat,
+          zoom: 4
         }}
         style={{width: '100%', height: '80vh'}} //w: 600, h: 400
         reuseMaps
         mapStyle="mapbox://styles/mapbox/outdoors-v11"
       >
         <GeolocateControl position="top-left"
-        ref={geoControlRef}
         onGeolocate={(e) => setCurrentGeolocation({
           longitude: e.coords.longitude,
           latitude: e.coords.latitude
