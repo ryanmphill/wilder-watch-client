@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { getSingleStudy } from "../../managers/StudyManager"
+import { getSingleStudy } from "../../../managers/StudyManager"
 import { useEffect, useState } from "react"
 
 
