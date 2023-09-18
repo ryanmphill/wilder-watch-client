@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { addObservation } from "../../managers/ObservationManager";
+import { addObservation } from "../../../managers/ObservationManager";
 import { useState } from "react";
+import ObservationFormMap from "./ObservationFormMap";
 
 const AddObservation = () => {
     const { studyId } = useParams()
-
+    const [showMap, setShowMap] = useState(false)
     const [observation, updateObservation] = useState({
         latitude: 0,
         longitude: 0,
@@ -85,6 +86,19 @@ const AddObservation = () => {
                     />
                 </div>
             </fieldset>
+            
+            {!showMap
+                ? <button onClick={(e) => {
+                    e.preventDefault()
+                    setShowMap(true)
+                }}
+                >Use My Location</button>
+
+                : <ObservationFormMap
+                    observation={observation}
+                    updateObservation={updateObservation}
+                    setShowMap={setShowMap} />
+            }
 
             <fieldset>
                 <div className="form-group">
