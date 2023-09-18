@@ -12,7 +12,7 @@ import CreateStudyForm from "../components/studies/CreateStudyForm";
 import { Authorized } from "../components/auth/Authorized";
 import StudyDetails from "../components/studies/StudyDetails";
 import EditStudyForm from "../components/studies/EditStudyForm";
-import AddObservation from "../components/studies/AddObservation";
+import AddObservation from "../components/studies/observationForm/AddObservation";
 import ApplicationLayout from "../components/layouts/ApplicationLayout";
 
 const router = createBrowserRouter(
