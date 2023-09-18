@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { getSingleStudy } from "../../../managers/StudyManager"
 import { useEffect, useState } from "react"
+import StudyMap from "./StudyMap"
 
 
 const StudyDetails = () => {
@@ -41,9 +42,10 @@ const StudyDetails = () => {
 
         <section>
             <h3>Observations from Study Participants</h3>
+            <StudyMap observations={observations}/>
             {
                 observations.length > 0 &&
-                study.observations.map((observation) => 
+                observations.map((observation) => 
                 <div key={`observation--${observation.id}`}>
                     <div>----------------------------</div>
                     <div>Coordinates: {observation.latitude}, {observation.longitude}</div>
