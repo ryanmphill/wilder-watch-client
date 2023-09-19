@@ -13,9 +13,9 @@ const StudyDetails = () => {
     const navigate = useNavigate()
 
     const fetchStudy = async () => {
-        const studyJSON = await getSingleStudy(studyId)
-        setStudy(studyJSON)
-        setObservations(studyJSON.observations)
+        const studyData = await getSingleStudy(studyId)
+        setStudy(studyData)
+        setObservations(studyData.observations)
 
     }
 
