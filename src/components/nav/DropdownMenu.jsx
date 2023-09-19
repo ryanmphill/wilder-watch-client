@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import './DropdownMenu.css' // Import CSS styles for the dropdown menu
 import { Link, useNavigate } from 'react-router-dom';
 import burgerIcon from "../../assets/burgericon.svg"
-import { AuthContext } from '../../Context';
+import { AuthContext } from '../../context/AuthContext';
 
 export const DropdownMenu = ({ refreshUser }) => {
     const [isOpen, setIsOpen] = useState(false) // State to track if the dropdown is open or closed

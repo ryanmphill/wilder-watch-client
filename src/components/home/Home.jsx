@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { deleteStudy, getAllStudies } from "../../managers/StudyManager"
 import { Link, useNavigate } from "react-router-dom"
-import { AuthContext } from "../../Context"
+import { AuthContext } from "../../context/AuthContext"
 
 export const Home = () => {
     const { currentUserId, fetchCurrentUserId } = useContext(AuthContext)

@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { getCurrentUser } from "./managers/AuthManager";
+import { getCurrentUser } from "../managers/AuthManager";
 
 export const AuthContext = createContext();
 

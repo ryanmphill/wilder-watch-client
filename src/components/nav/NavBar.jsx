@@ -3,7 +3,7 @@ import "./NavBar.css"
 import { DropdownMenu } from "./DropdownMenu"
 import wilderLogo from "../../assets/mountains.png"
 import { useContext } from "react"
-import { AuthContext } from "../../Context"
+import { AuthContext } from "../../context/AuthContext"
 
 export const NavBar = () => {
     const { fetchCurrentUserId } = useContext(AuthContext)
