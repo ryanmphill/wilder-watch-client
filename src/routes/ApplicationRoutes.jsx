@@ -10,7 +10,7 @@ import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
 import CreateStudyForm from "../components/studies/CreateStudyForm";
 import { Authorized } from "../components/auth/Authorized";
-import StudyDetails from "../components/studies/StudyDetails";
+import StudyDetails from "../components/studies/studyDetails/StudyDetails";
 import EditStudyForm from "../components/studies/EditStudyForm";
 import AddObservation from "../components/studies/observationForm/AddObservation";
 import ApplicationLayout from "../components/layouts/ApplicationLayout";

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { getSingleStudy } from "../../managers/StudyManager"
+import { getSingleStudy } from "../../../managers/StudyManager"
 import { useEffect, useState } from "react"
+import StudyMap from "./StudyMap"
 
 
 const StudyDetails = () => {
@@ -12,9 +13,9 @@ const StudyDetails = () => {
     const navigate = useNavigate()
 
     const fetchStudy = async () => {
-        const studyJSON = await getSingleStudy(studyId)
-        setStudy(studyJSON)
-        setObservations(studyJSON.observations)
+        const studyData = await getSingleStudy(studyId)
+        setStudy(studyData)
+        setObservations(studyData.observations)
 
     }
 
@@ -41,9 +42,14 @@ const StudyDetails = () => {
 
         <section>
             <h3>Observations from Study Participants</h3>
+            <StudyMap observations={observations}
+            centerLon={study.average_longitude}
+            centerLat={study.average_latitude}
+            furthestLon={study.furthest_longitude}
+            furthestLat={study.furthest_latitude} />
             {
                 observations.length > 0 &&
-                study.observations.map((observation) => 
+                observations.map((observation) => 
                 <div key={`observation--${observation.id}`}>
                     <div>----------------------------</div>
                     <div>Coordinates: {observation.latitude}, {observation.longitude}</div>
