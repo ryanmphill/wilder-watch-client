@@ -99,10 +99,9 @@ import Map, {
         {markers}
         {popupDisplay && (
             <Popup
-              anchor="top"
               longitude={popupDisplay.longitude}
               latitude={popupDisplay.latitude}
-              offsetTop={-30}
+              offset={15}
               closeButton={false}
               onClose={() => setPopupDisplay(null)}
             >
