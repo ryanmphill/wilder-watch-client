@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { getSingleStudy } from "../../../managers/StudyManager"
 import { useEffect, useState } from "react"
 import StudyMap from "./StudyMap"
@@ -34,6 +34,7 @@ const StudyDetails = () => {
         <div>Type of Study: {study?.study_type?.label}</div>
         <div>Starting Date: {study.start_date}</div>
         <div>Region: {study?.region?.label}</div>
+        <div>Authored By: <Link to={`/profile/${study?.author?.id}`}>{study?.author?.full_name}</Link></div>
         <div>
             <button
                 onClick={() => {navigate(`/study/${studyId}/add_observation`)}}

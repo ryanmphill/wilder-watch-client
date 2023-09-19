@@ -14,6 +14,7 @@ import StudyDetails from "../components/studies/studyDetails/StudyDetails";
 import EditStudyForm from "../components/studies/EditStudyForm";
 import AddObservation from "../components/studies/observationForm/AddObservation";
 import ApplicationLayout from "../components/layouts/ApplicationLayout";
+import Profile from "../components/profile/Profile";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,6 +29,10 @@ const router = createBrowserRouter(
                     <Route
                         element={<StudyDetails />}
                         path="/study/:studyId"
+                    />
+                    <Route
+                        element={<Profile />}
+                        path="/profile/:userId"
                     />
                     <Route element={<Authorized />}>
                         <Route element={<CreateStudyForm />} path="/study/new" />

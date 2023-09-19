@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './DropdownMenu.css' // Import CSS styles for the dropdown menu
 import { Link, useNavigate } from 'react-router-dom';
 import burgerIcon from "../../assets/burgericon.svg"
+import { AuthContext } from '../../Context';
 
 export const DropdownMenu = ({ refreshUser }) => {
     const [isOpen, setIsOpen] = useState(false) // State to track if the dropdown is open or closed
+    const { currentUserId } = useContext(AuthContext)
   
     const toggleDropdown = () => {
       setIsOpen(!isOpen) // Toggle the state to open or close the dropdown
@@ -49,10 +51,10 @@ export const DropdownMenu = ({ refreshUser }) => {
         {isOpen && <>
             <section className="dropdown-content" onClick={toggleDropdown}>
               <Link className="dropdown--link" to="/">Home</Link>
-              <Link className="dropdown--link" to="/">Profile</Link>
               { // Links for logged in users
                 localStorage.getItem("auth_token")
                   ? <div>
+                    <Link className="dropdown--link" to={`/profile/${currentUserId}`}>Profile</Link>
                     <Link className="dropdown--link" to="/study/new">+ New Study</Link>
                     <Link className="dropdown--link" to="" onClick={() => {
                       localStorage.removeItem("auth_token")
