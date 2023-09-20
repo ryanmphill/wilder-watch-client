@@ -16,6 +16,8 @@ import AddObservation from "../components/studies/observationForm/AddObservation
 import ApplicationLayout from "../components/layouts/ApplicationLayout";
 import Profile from "../components/profile/Profile";
 import ProfileActivity from "../components/profile/ProfileActivity";
+import ProfileParticipated from "../components/profile/ProfileParticipated";
+import ProfileAuthored from "../components/profile/ProfileAuthored";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -36,6 +38,8 @@ const router = createBrowserRouter(
                         path="/profile/:userId"
                     >
                         <Route index element={<ProfileActivity />} />
+                        <Route element={<ProfileParticipated />} path="participated" />
+                        <Route element={<ProfileAuthored />} path="authored" />
                     </Route>
                     <Route element={<Authorized />}>
                         <Route element={<CreateStudyForm />} path="/study/new" />

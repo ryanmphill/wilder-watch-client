@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-evenly;
     column-gap: 1rem;
-    border-bottom: 1px solid darkslategrey;
 }
 
 .profile__header__info {

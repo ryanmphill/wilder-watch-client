@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { getSingleUser } from "../../managers/UserManager"
 import "./profile.css"
 import { ProfileContext } from "../../context/ProfileContext"
+import { ProfileNav } from "./ProfileNav"
 
 const ProfileHeader = () => {
     const { userId, profileData, fetchUserProfile } = useContext(ProfileContext)
@@ -14,8 +15,8 @@ const ProfileHeader = () => {
         [fetchUserProfile]
     )
 
-    return <article>
-        <section className="profile__header">
+    return <article className="profile__header">
+        <section>
             <div className="profile__header__flexContainer">
                 <div className="profile__imgContainer">
                     {
@@ -41,6 +42,7 @@ const ProfileHeader = () => {
                 </div>
             </div>
         </section>
+        <ProfileNav profileId={userId}/>
     </article>
 }
 export default ProfileHeader
