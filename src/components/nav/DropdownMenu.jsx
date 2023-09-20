@@ -7,6 +7,15 @@ import { AuthContext } from '../../context/AuthContext';
 export const DropdownMenu = ({ refreshUser }) => {
     const [isOpen, setIsOpen] = useState(false) // State to track if the dropdown is open or closed
     const { currentUserId } = useContext(AuthContext)
+
+    useEffect(
+      () => {
+        if (isOpen) {
+          refreshUser()
+        }
+      },
+      [refreshUser, isOpen]
+    )
   
     const toggleDropdown = () => {
       setIsOpen(!isOpen) // Toggle the state to open or close the dropdown

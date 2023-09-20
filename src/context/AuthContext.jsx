@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { getCurrentUser } from "../managers/AuthManager";
 
 export const AuthContext = createContext();
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         setIsAdminState(isStaff)
     }
 
-    const fetchCurrentUserId = async () => {
+    const fetchCurrentUserId = useCallback(async () => {
         if (localStorage.getItem("auth_token")) {
             const data = await getCurrentUser()
             setCurrentUserId(data.id)
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
             setCurrentUserId(0)
         }
         
-    }
+    },[])
 
     
 
