@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom"
-import { AuthContext } from "../../Context"
+import { AuthContext } from "../../context/AuthContext"
 import { useContext } from "react"
 
 export const Authorized = () => {

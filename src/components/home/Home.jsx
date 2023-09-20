@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import { deleteStudy, getAllStudies } from "../../managers/StudyManager"
 import { Link, useNavigate } from "react-router-dom"
-import { AuthContext } from "../../Context"
+import { AuthContext } from "../../context/AuthContext"
 
 export const Home = () => {
     const { currentUserId, fetchCurrentUserId } = useContext(AuthContext)
@@ -10,17 +10,17 @@ export const Home = () => {
     const [studies, setStudies] = useState([])
     const navigate = useNavigate()
 
-    const fetchStudies = async () => {
+    const fetchStudies = useCallback(async () => {
         const data = await getAllStudies()
         setStudies(data)
-    }
+    },[])
 
     useEffect(
         () => {
             fetchStudies()
             fetchCurrentUserId()
         },
-        []
+        [fetchStudies, fetchCurrentUserId]
     )
 
     const handleDeleteClick = async (id) => {

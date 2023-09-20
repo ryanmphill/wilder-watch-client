@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
-import { AuthContext } from "../../Context"
+import { AuthContext } from "../../context/AuthContext"
 
 export const Login = () => {
   const {setToken, setAdmin} = useContext(AuthContext)

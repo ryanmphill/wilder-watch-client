@@ -31,9 +31,9 @@ import mapboxgl from 'mapbox-gl';
     )
 
     // MAKE ALL MARKERS VISIBLE ON INITIAL RENDERING OF MAP ///////////////////////////////////////////////////////////
-    /* This useEffect takes the center observation point and the point furthest from it (calculated by the server) 
+    /* This useEffect takes the center observation point and the point furthest from it (both calculated by the server) 
         to set the initial map view. The mapbox gl library lets us create instances of the LngLat class and use those
-        instances to get the radius in meters and then create a LngLatBounds object that the Map can use to set the initial view
+        instances to get the radius in meters and then create a `LngLatBounds` object that the Map can use to set the initial view
         that will allow all of the observation markers to be visible. */
     useEffect(
         () => {
@@ -44,7 +44,6 @@ import mapboxgl from 'mapbox-gl';
                 const mapBounds = center.toBounds(radius)
                 setInitialMapBounds(mapBounds)
                 setViewLoaded(true)
-                console.log("mapBounds", mapBounds)
             // If there are no observations yet, the center points default to zero, and the furthest points will be null 
             } else if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon === null && furthestLat === null) {
                 setViewLoaded(true)

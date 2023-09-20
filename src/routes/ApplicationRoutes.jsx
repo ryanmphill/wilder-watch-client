@@ -14,6 +14,10 @@ import StudyDetails from "../components/studies/studyDetails/StudyDetails";
 import EditStudyForm from "../components/studies/EditStudyForm";
 import AddObservation from "../components/studies/observationForm/AddObservation";
 import ApplicationLayout from "../components/layouts/ApplicationLayout";
+import Profile from "../components/profile/Profile";
+import ProfileActivity from "../components/profile/ProfileActivity";
+import ProfileParticipated from "../components/profile/ProfileParticipated";
+import ProfileAuthored from "../components/profile/ProfileAuthored";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -29,6 +33,14 @@ const router = createBrowserRouter(
                         element={<StudyDetails />}
                         path="/study/:studyId"
                     />
+                    <Route
+                        element={<Profile />}
+                        path="/profile/:userId"
+                    >
+                        <Route index element={<ProfileActivity />} />
+                        <Route element={<ProfileParticipated />} path="participated" />
+                        <Route element={<ProfileAuthored />} path="authored" />
+                    </Route>
                     <Route element={<Authorized />}>
                         <Route element={<CreateStudyForm />} path="/study/new" />
                         <Route element={<EditStudyForm />} path="/study/edit/:studyId" />
