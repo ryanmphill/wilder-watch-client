@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const ProfileParticipated = () => {
     const { participatedStudies } = useContext(ProfileContext)
 
-    return (participatedStudies &&
+    return (participatedStudies.length > 0 ?
         <article>
                 <h3>Studies Participated In</h3>
                 <section className="profile__studyCard__flexContainer">
@@ -28,6 +28,10 @@ const ProfileParticipated = () => {
                     </div>)
                 }
                 </section>
+        </article>
+        :
+        <article>
+            <h4>No studies have been participated in yet</h4>
         </article>
     )
 }
