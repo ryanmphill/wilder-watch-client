@@ -4,7 +4,7 @@ import { formatDate } from "../../utils/helpers/formatDate"
 import { Link } from "react-router-dom"
 
 const ProfileActivity = () => {
-    const { userId, profileData } = useContext(ProfileContext)
+    const { profileData } = useContext(ProfileContext)
     
     return (profileData &&
         <article>
