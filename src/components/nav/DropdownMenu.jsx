@@ -59,13 +59,13 @@ export const DropdownMenu = ({ refreshUser }) => {
         </button>
         {isOpen && <>
             <section className="dropdown-content" onClick={toggleDropdown}>
-              <Link className="dropdown--link" to="/">Home</Link>
+              <Link className="dropdown--link dropdown--link__top" to="/">Home</Link>
               { // Links for logged in users
                 localStorage.getItem("auth_token")
                   ? <div>
                     <Link className="dropdown--link" to={`/profile/${currentUserId}`}>Profile</Link>
                     <Link className="dropdown--link" to="/study/new">+ New Study</Link>
-                    <Link className="dropdown--link" to="" onClick={() => {
+                    <Link className="dropdown--link dropdown--link__bottom" to="" onClick={() => {
                       localStorage.removeItem("auth_token")
                       localStorage.removeItem("wilder_admin")
                       refreshUser()
@@ -74,7 +74,7 @@ export const DropdownMenu = ({ refreshUser }) => {
                   </div>
                   : <>
                     <Link className="dropdown--link" to="login">Log In</Link>
-                    <Link className="dropdown--link" to="register">Register</Link>
+                    <Link className="dropdown--link dropdown--link__bottom" to="register">Register</Link>
                   </>
               }
             </section>
