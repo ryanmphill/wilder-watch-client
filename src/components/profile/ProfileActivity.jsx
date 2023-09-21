@@ -7,16 +7,16 @@ const ProfileActivity = () => {
     const { profileData } = useContext(ProfileContext)
     
     return (profileData &&
-        <article className="fadeIn">
-            <section>
-                <div>Observations made: {profileData.observation_count}</div>
-                <div>Studies participated in: {profileData.studies_participated_count}</div>
-                {
+        <article className="fadeIn" id="activity--article">
+            <section className="activity__userStats">
+                <div className="activity__stat">{profileData.observation_count} observations made</div>
+                <div className="activity__stat">{profileData.studies_participated_count} studies participated in</div>
+                <div className="activity__stat">Member since: {profileData.date_joined && formatDate(profileData.date_joined)}</div>
+            </section>
+            {
                     profileData.authored_studies_count > 0 &&
                     <div>Authored Studies: {profileData.authored_studies_count}</div>
-                }
-                <div>Member since: {profileData.date_joined && formatDate(profileData.date_joined)}</div>
-            </section>
+            }
             <section>
                 <h3>Recent Activity</h3>
                 {
@@ -33,7 +33,7 @@ const ProfileActivity = () => {
                         }
                         <div className="activity__observation__info">
                             <div>Study: <Link to={`/study/${obs.study}`}>{obs.study_title}</Link></div>
-                            <div>{obs.description}</div>
+                            <div>{obs.description && `"${obs.description}"`}</div>
                             <div>Observation recorded at {obs.latitude}, {obs.longitude} on {formatDate(obs.date)}</div>
                         </div>
                     </div>)

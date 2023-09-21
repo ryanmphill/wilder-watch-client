@@ -33,10 +33,10 @@
 .home__lock {
     width: 100%;
     animation: fadeIn 5.0s;
-    animation: slide-in 1.5s both;
+    animation: slide-hero 1.5s both;
 }
 
-@keyframes slide-in {
+@keyframes slide-hero {
     0% {
       transform: translateY(30px);
     }
