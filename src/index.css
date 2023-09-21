@@ -21,11 +21,14 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  /* color: #646cff; */
+  color: #F36E21;
+  text-shadow: 0.1px 0.1px 0.75px black;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  /* color: #535bf2; */
+  color: #e05f15;
 }
 
 body {

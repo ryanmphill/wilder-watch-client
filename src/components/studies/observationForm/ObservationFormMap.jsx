@@ -16,20 +16,10 @@ import Map, {
     
     // GET GEOLOCATION WITH MAP CONTROLS USING USEREF()
     const geoControlRef = useRef(null);
-  
-    useEffect(
-      () => {
-        if (currentGeolocation) {
-          console.log("current location", currentGeolocation)
-        }
-      },
-      [currentGeolocation]
-    )
     
     // This function runs when the first visually complete rendering of the map component has occurred.
     const onMapLoad = useCallback(() => {
         if (mapLoaded === false) {
-            console.log("onMapLoad running", "mapLoaded:", mapLoaded)
             setMapLoaded(true)
         }
       }, []);
@@ -43,7 +33,6 @@ import Map, {
     const isControlMounted = () => {
         if (mapLoaded && !locateControlMounted && geoControlRef.current._setup) {
             setLocateControlMounted(true)
-            console.log("geoControlRef is set up")
         }
     }
 
@@ -110,7 +99,7 @@ import Map, {
                           closeButton={false}
                           onClose={() => setCurrentGeolocation(null)}
                       >
-                          <div>
+                          <div className="observationMap_popup">
                               {currentGeolocation.latitude}°, {currentGeolocation.longitude}°
                           </div>
                       </Popup>
