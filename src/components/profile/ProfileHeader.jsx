@@ -2,9 +2,11 @@ import {  useContext, useEffect } from "react"
 import "./profile.css"
 import { ProfileContext } from "../../context/ProfileContext"
 import { ProfileNav } from "./ProfileNav"
+import { AuthContext } from "../../context/AuthContext"
 
 const ProfileHeader = () => {
     const { userId, profileData, fetchUserProfile, fetchParticipatedStudies, fetchAuthoredStudies } = useContext(ProfileContext)
+    const { fetchCurrentUserId } = useContext(AuthContext)
 
     useEffect(
         () => {
@@ -23,6 +25,12 @@ const ProfileHeader = () => {
             fetchAuthoredStudies()
         },
         [fetchAuthoredStudies]
+    )
+    useEffect(
+        () => {
+            fetchCurrentUserId()
+        },
+        [fetchCurrentUserId]
     )
 
     return (profileData &&
