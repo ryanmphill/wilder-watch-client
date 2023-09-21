@@ -3,6 +3,8 @@ import { deleteStudy, getAllStudies } from "../../managers/StudyManager"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import wilderLock from "../../assets/lock white.svg"
+import deleteIcon from "../../assets/delete-icon.svg"
+import editIcon from "../../assets/edit-icon.svg"
 import "./home.css"
 
 export const Home = () => {
@@ -41,12 +43,12 @@ export const Home = () => {
             </div>
         </section>
 
-        <h2 className="homeHeader">Welcome To WilderWatch</h2>
+        <h2 className="homeHeader fadeIn">Welcome To WilderWatch</h2>
 
         <section className="home__studyCard__flexContainer">
             {
                 studies.map((study) => 
-                    <div className="home__studyCard" key={`studyhome--${study.id}`}>
+                    <div className="home__studyCard fadeIn" key={`studyhome--${study.id}`}>
                         {
                             study.image_url &&
                             <div className="home__studyCard__imgContainer">
@@ -64,10 +66,14 @@ export const Home = () => {
                             {
                                 study?.author?.id === currentUserId &&
                                 <>
-                                    <button onClick={() => navigate(`/study/edit/${study.id}`)}>Edit</button>
+                                    <button className="iconbtn__edit" onClick={() => navigate(`/study/edit/${study.id}`)}>
+                                        <img className="iconbtn__edit--img" src={editIcon} alt="edit"></img>
+                                    </button>
                                     {
                                         study.id !== confirmation
-                                            ? <button onClick={() => showConfirmation(study.id)}>Delete</button>
+                                            ? <button className="iconbtn__dlt" onClick={() => showConfirmation(study.id)}>
+                                                <img className="iconbtn__dlt--img" src={deleteIcon} alt="delete"></img>
+                                              </button>
                                             : <>
                                                 Are you sure?
                                                 <button onClick={() => { handleDeleteClick(study.id) }}

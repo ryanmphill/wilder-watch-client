@@ -7,7 +7,7 @@ const ProfileActivity = () => {
     const { profileData } = useContext(ProfileContext)
     
     return (profileData &&
-        <article>
+        <article className="fadeIn">
             <section>
                 <div>Observations made: {profileData.observation_count}</div>
                 <div>Studies participated in: {profileData.studies_participated_count}</div>

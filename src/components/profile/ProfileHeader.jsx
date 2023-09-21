@@ -25,18 +25,19 @@ const ProfileHeader = () => {
         [fetchAuthoredStudies]
     )
 
-    return <article className="profile__header">
+    return (profileData &&
+    <article className="profile__header fadeIn">
         <section>
             <div className="profile__header__flexContainer">
                 <div className="profile__imgContainer">
                     {
                         profileData.image_url &&
                         <div className="profile__imgWrapper">
-                        <img className="profile--img" src={profileData?.image_url} alt="owner of profile"></img>
+                        <img className="profile--img fadeIn" src={profileData?.image_url} alt="owner of profile"></img>
                         </div>
                     }
                 </div>
-                <div className="profile__header__info">
+                <div className="profile__header__info fadeIn">
                     <header>
                         <h2>{profileData.full_name}</h2>
                         {profileData.flair &&
@@ -54,5 +55,5 @@ const ProfileHeader = () => {
         </section>
         <ProfileNav profileId={userId}/>
     </article>
-}
+)}
 export default ProfileHeader

@@ -33,7 +33,17 @@
 .home__lock {
     width: 100%;
     animation: fadeIn 5.0s;
+    animation: slide-in 1.5s both;
 }
+
+@keyframes slide-in {
+    0% {
+      transform: translateY(30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
 @media (min-width: 1080px) {
     .home__heroImg {
@@ -127,11 +137,30 @@
 
 .home__studyCard--footer {
     border-top: 1px double rgba(42, 50, 50, 0.25);
-    height: 1.85rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     padding: 0 0.5rem;
+}
+
+.iconbtn__edit, .iconbtn__dlt {
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border: none;
+    border-radius: 6px;
+}
+
+.iconbtn__edit:hover, .iconbtn__dlt:hover {
+    cursor: pointer;
+    background-color: #889884;
+}
+
+.iconbtn__edit--img, .iconbtn__dlt--img {
+    width: 100%;
 }
 
 @media (min-width: 610px) {
