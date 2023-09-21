@@ -92,9 +92,10 @@ import mapboxgl from 'mapbox-gl';
           latitude: centerLat,
           zoom: 1
         }}
-        style={{width: '100%', height: '80vh'}} //w: 600, h: 400
+        style={{width: '100%', height: '80vh'}}
         reuseMaps
-        mapStyle="mapbox://styles/mapbox/outdoors-v11"
+        mapStyle="mapbox://styles/mapbox/outdoors-v12"
+        // projection={"mercator"} // Default projection is now globe
       >
         <GeolocateControl position="top-left"
         onGeolocate={(e) => setCurrentGeolocation({

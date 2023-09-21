@@ -66,19 +66,21 @@ export const Home = () => {
                             {
                                 study?.author?.id === currentUserId &&
                                 <>
-                                    <button className="iconbtn__edit" onClick={() => navigate(`/study/edit/${study.id}`)}>
-                                        <img className="iconbtn__edit--img" src={editIcon} alt="edit"></img>
-                                    </button>
                                     {
                                         study.id !== confirmation
-                                            ? <button className="iconbtn__dlt" onClick={() => showConfirmation(study.id)}>
-                                                <img className="iconbtn__dlt--img" src={deleteIcon} alt="delete"></img>
-                                              </button>
+                                            ? <>
+                                                <button className="iconbtn__edit fadeIn" onClick={() => navigate(`/study/edit/${study.id}`)}>
+                                                    <img className="iconbtn__edit--img fadeIn" src={editIcon} alt="edit"></img>
+                                                </button>
+                                                <button className="iconbtn__dlt fadeIn" onClick={() => showConfirmation(study.id)}>
+                                                    <img className="iconbtn__dlt--img fadeIn" src={deleteIcon} alt="delete"></img>
+                                                </button>
+                                              </>
                                             : <>
-                                                Are you sure?
-                                                <button onClick={() => { handleDeleteClick(study.id) }}
+                                                <p className="home__studyCard__dltPrompt fadeIn">Are you sure?</p>
+                                                <button className="btn__small fadeIn" onClick={() => { handleDeleteClick(study.id) }}
                                                 >Delete</button>
-                                                <button onClick={() => showConfirmation(0)}>Cancel</button>
+                                                <button className="btn__cancel__small fadeIn" onClick={() => showConfirmation(0)}>Cancel</button>
                                             </>
                                     }
 

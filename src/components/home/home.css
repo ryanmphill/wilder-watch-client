@@ -163,6 +163,10 @@
     width: 100%;
 }
 
+.home__studyCard__dltPrompt {
+    margin-right: 0.4rem;
+}
+
 @media (min-width: 610px) {
     .home__studyCard__flexContainer {
         flex-direction: row;

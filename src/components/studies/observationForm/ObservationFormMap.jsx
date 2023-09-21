@@ -84,7 +84,7 @@ import Map, {
                   onLoad={onMapLoad}
                   onRender={isControlMounted}
                   reuseMaps
-                  mapStyle="mapbox://styles/mapbox/outdoors-v11"
+                  mapStyle="mapbox://styles/mapbox/outdoors-v12"
               >
                   <GeolocateControl position="top-left"
                       ref={geoControlRef}
