@@ -6,8 +6,10 @@ import { ProfileProvider } from "../../context/ProfileContext"
 const Profile = () => {
     return <>
         <ProfileProvider>
-            <ProfileHeader />
-            <Outlet />
+            <section className="profile">
+                <ProfileHeader />
+                <Outlet />
+            </section>
         </ProfileProvider>
     </>
 }

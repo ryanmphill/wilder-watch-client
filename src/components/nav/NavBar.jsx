@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 import { DropdownMenu } from "./DropdownMenu"
-import wilderLogo from "../../assets/mountains.png"
+import wilderLogo from "../../assets/logo green.svg"
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 

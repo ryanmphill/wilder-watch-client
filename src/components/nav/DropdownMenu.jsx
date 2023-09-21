@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import './DropdownMenu.css' // Import CSS styles for the dropdown menu
 import { Link, useNavigate } from 'react-router-dom';
-import burgerIcon from "../../assets/burgericon.svg"
+import burgerIcon from "../../assets/Menu green.svg"
 import { AuthContext } from '../../context/AuthContext';
 
 export const DropdownMenu = ({ refreshUser }) => {

@@ -1,3 +1,7 @@
+.profile {
+    padding: 1rem;
+}
+
 .profile__header__flexContainer {
     display: flex;
     justify-content: space-evenly;
