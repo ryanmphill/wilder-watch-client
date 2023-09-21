@@ -144,25 +144,6 @@
     padding: 0 0.5rem;
 }
 
-.iconbtn__edit, .iconbtn__dlt {
-    width: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: inherit;
-    border: none;
-    border-radius: 6px;
-}
-
-.iconbtn__edit:hover, .iconbtn__dlt:hover {
-    cursor: pointer;
-    background-color: #889884;
-}
-
-.iconbtn__edit--img, .iconbtn__dlt--img {
-    width: 100%;
-}
-
 .home__studyCard__dltPrompt {
     margin-right: 0.4rem;
 }
