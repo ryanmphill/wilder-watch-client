@@ -14,11 +14,11 @@
     background-size: cover;
     background-blend-mode: multiply;
     box-shadow: -3px 3px 4px rgba(40, 39, 39, 0.35);
-    height: 82.5vh;
+    height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-attachment: fixed;
+    animation: fadeIn 0.65s;
 }
 
 .home__lockContainer {
@@ -32,6 +32,13 @@
 
 .home__lock {
     width: 100%;
+    animation: fadeIn 5.0s;
+}
+
+@media (min-width: 1080px) {
+    .home__heroImg {
+        background-attachment: fixed;
+    }
 }
 /*-------------------------------------------------------------*/
 
