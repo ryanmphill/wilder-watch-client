@@ -1,3 +1,7 @@
+.profile {
+    padding: 1rem;
+}
+
 .profile__header__flexContainer {
     display: flex;
     justify-content: space-evenly;
@@ -95,12 +99,16 @@
     flex-direction: column;
     box-shadow: -1px 1px 4px rgba(41, 51, 51, 0.5);
     border-radius: 4px;
-    row-gap: 1rem;
+    row-gap: 0.65rem;
     column-gap: 0.45rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
     width: 95%;
+}
+
+.profile__studyCard h3 {
+    margin: 0;
 }
 
 .profile__studyCard__imgContainer {

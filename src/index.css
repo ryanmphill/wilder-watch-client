@@ -8,8 +8,9 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  /* color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
+  color: rgba(255, 255, 255, 0.87);
+  /* background-color: #242424; */
+  background-color: #142321;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,11 +21,14 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  /* color: #646cff; */
+  color: #F36E21;
+  text-shadow: 0.1px 0.1px 0.75px black;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  /* color: #535bf2; */
+  color: #e05f15;
 }
 
 body {
@@ -35,9 +39,86 @@ body {
   min-height: 100vh; */
 }
 
-#main-content {
-  padding: 1rem;
+/*general purpose fade-----------------------------------------*/
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
+
+.fadeIn {
+  animation: fadeIn 0.75s;
+}
+
+/*Global UI --------------------------------------------------*/
+.btn__small {
+  align-items: center;
+  appearance: button;
+  background-color: #F36E21;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 100%;
+  line-height: 0.25;
+  margin: 0;
+  padding: 10px 11px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn__small:active {
+  background-color: #c76024;
+}
+
+.btn__small:hover {
+  background-color: #e17f46;
+}
+
+.btn__cancel__small {
+  align-items: center;
+  appearance: button;
+  background-color: #a7a7a7;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 100%;
+  line-height: 0.25;
+  margin: 0;
+  padding: 10px 11px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn__cancel__small:active {
+  background-color: #2c2b2b;
+}
+
+.btn__cancel__small:hover {
+  background-color: #c6c6c6;
+}
+
+/* #main-content {
+  padding: 1rem;
+} */
 
 /* h1 {
   font-size: 3.2em;

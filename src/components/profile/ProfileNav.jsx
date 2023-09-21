@@ -18,7 +18,7 @@ export const ProfileNav = ({ profileId }) => {
         },
         [location]
     )
-    return <div className="profileNav">
+    return <div className="profileNav fadeIn">
         <div className="profileNav__LinkContainer">
         <button className={`profileNavLink profileNav--hoverEffect underline-effect ${currentPath === "activity" ? 'active' : ''}`}
             onClick={(e) => {

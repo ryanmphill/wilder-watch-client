@@ -6,7 +6,7 @@ const ProfileAuthored = () => {
     const { authoredStudies } = useContext(ProfileContext)
 
     return (authoredStudies.length > 0 ?
-        <article>
+        <article className="fadeIn">
                 <h3>Studies Authored</h3>
                 <section className="profile__studyCard__flexContainer">
                 {

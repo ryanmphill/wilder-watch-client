@@ -6,7 +6,7 @@ const ProfileParticipated = () => {
     const { participatedStudies } = useContext(ProfileContext)
 
     return (participatedStudies.length > 0 ?
-        <article>
+        <article className="fadeIn">
                 <h3>Studies Participated In</h3>
                 <section className="profile__studyCard__flexContainer">
                 {

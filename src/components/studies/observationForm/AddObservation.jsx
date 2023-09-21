@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { addObservation } from "../../../managers/ObservationManager";
 import { useState } from "react";
 import ObservationFormMap from "./ObservationFormMap";
+import "./observationForm.css"
 
 const AddObservation = () => {
     const { studyId } = useParams()

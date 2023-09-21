@@ -21,11 +21,11 @@
   }
   
   .profileNavLink {
-    color: rgba(0, 0, 0, 0.65);
     background-color: inherit;
     border: none;
     outline: none;
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.87);
   }
   
   .profileNav--hoverEffect {
@@ -38,7 +38,7 @@
   
   .profileNavLink.active {
     /* font-weight: bold; */
-    color: black;
+    color: #889884;
   }
   
   
