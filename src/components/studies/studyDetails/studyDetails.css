@@ -1,0 +1,83 @@
+/*Cover Image -------------------------------------------------------------*/
+.studyDetails__imgHeader {
+    background-color: #889884;
+    background-image: var(--bg-image); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    box-shadow: -3px 3px 4px rgba(40, 39, 39, 0.35);
+    height: 70vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    animation: fadeIn 0.65s;
+    padding: 0.25rem;
+}
+
+@media (min-width: 1080px) {
+    .studyDetails__imgHeader {
+        background-attachment: fixed;
+    }
+}
+
+.studyDetails__imgHeaderTab {
+    border-radius: 6px;
+    background-color: rgba(40, 39, 39, 0.35);
+    padding: 0.5rem;
+    margin: 0.25rem;
+    animation: slide-left 1.0s both;
+}
+/*-------------------------------------------------------------------------*/
+
+/*Study information and Map flex-------------------------------------------*/
+.studyDetails__bodyFlex {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.studyDetails__body {
+    padding: 1rem 1rem 2.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.studyDetails__mapContainer {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.studyDetails__participate {
+    margin-top: 1rem;
+}
+
+@media (min-width: 1250px) {
+    .studyDetails__bodyFlex {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 1rem;
+    }
+
+    .studyDetails__mapContainer {
+        width: 48%;
+    }
+
+    .studyDetails__infoContainer {
+        width: 48%;
+    }
+
+    .studyDetails__body {
+        padding: 1.5rem 1.5rem 2.75rem 1.5rem;
+    }
+
+}
+/* @media (min-width: 1350px) {
+    .studyDetails__mapContainer {
+        width: 48%;
+    }
+
+    .studyDetails__infoContainer {
+        width: 48%;
+    }
+} */
+/*-------------------------------------------------------------------------*/

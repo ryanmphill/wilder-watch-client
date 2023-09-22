@@ -134,6 +134,39 @@ body {
   background-color: #c6c6c6;
 }
 
+.btn__medium {
+  align-items: center;
+  appearance: button;
+  background-color: #F36E21;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 100%;
+  line-height: 0.25;
+  margin: 0;
+  padding: 14px 22px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn__medium:active {
+  background-color: #c76024;
+}
+
+.btn__medium:hover {
+  background-color: #e17f46;
+}
+
 /*edit/delete icon buttons-------------------------------------------------------------*/
 .iconbtn__edit, .iconbtn__dlt {
   width: 2.5rem;

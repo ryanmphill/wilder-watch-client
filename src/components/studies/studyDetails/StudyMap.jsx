@@ -80,10 +80,6 @@ import mapboxgl from 'mapbox-gl';
     return (
     startingViewLoaded &&
       <section className="studyMapContainer">
-        <div>
-          <h3>Observations</h3>
-        </div>
-  
         <Map
         mapboxAccessToken={API_KEY}
         initialViewState={{
@@ -92,7 +88,7 @@ import mapboxgl from 'mapbox-gl';
           latitude: centerLat,
           zoom: 1
         }}
-        style={{width: '100%', height: '80vh'}}
+        style={{width: '100%', height: '75vh'}}
         reuseMaps
         mapStyle="mapbox://styles/mapbox/outdoors-v12"
         // projection={"mercator"} // Default projection is now globe
