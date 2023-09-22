@@ -3,6 +3,7 @@ import { addObservation } from "../../../managers/ObservationManager";
 import { useState } from "react";
 import ObservationFormMap from "./ObservationFormMap";
 import "./observationForm.css"
+import "../studyForm.css"
 
 const AddObservation = () => {
     const { studyId } = useParams()
@@ -53,8 +54,8 @@ const AddObservation = () => {
     }
 
     return <article>
-        <form className="observationForm">
-            <h2 className="observationFormHeader">Record Your Observation 🔭</h2>
+        <form className="observationForm studyForm">
+            <h2 className="observationFormHeader studyFormHeader">Record Your Observation 🔭</h2>
 
             <fieldset>
                 <div className="form-group">
@@ -64,7 +65,7 @@ const AddObservation = () => {
                         required autoFocus
                         type="number"
                         name="latitude"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder=""
                         value={observation.latitude !== 0 ? observation.latitude : ""}
                         onChange={(e) => updateForm(e, updateObservation, "float")}
@@ -77,10 +78,10 @@ const AddObservation = () => {
                     <label htmlFor="obs-longitude" className="studyLabel">Longitude:</label>
                     <input
                         id="obs-longitude"
-                        required autoFocus
+                        required
                         type="number"
                         name="longitude"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder=""
                         value={observation.longitude !== 0 ? observation.longitude : ""}
                         onChange={(e) => updateForm(e, updateObservation, "float")}
@@ -89,11 +90,11 @@ const AddObservation = () => {
             </fieldset>
             
             {!showMap
-                ? <button onClick={(e) => {
+                ? <button className="btn__medium" onClick={(e) => {
                     e.preventDefault()
                     setShowMap(true)
                 }}
-                >Use My Location</button>
+                >Use My Location 🌎</button>
 
                 : <ObservationFormMap
                     observation={observation}
@@ -106,10 +107,10 @@ const AddObservation = () => {
                     <label htmlFor="obs-desc" className="studyLabel">Description:</label>
                     <textarea
                         id="obs-desc"
-                        required autoFocus
+                        required
                         type="text"
                         name="description"
-                        className="form-control"
+                        className="studyForm__control studyForm--textarea"
                         placeholder="Write a brief description of what you observed"
                         value={observation.description}
                         onChange={(e) => updateForm(e, updateObservation, "str")}
@@ -123,10 +124,10 @@ const AddObservation = () => {
                     <label htmlFor="obs-date" className="studyLabel">Date of Observation:</label>
                     <input
                         id="obs-date"
-                        required autoFocus
+                        required
                         type="date"
                         name="date"
-                        className="form-control"
+                        className="studyForm__control"
                         value={observation.date}
                         onChange={(e) => updateForm(e, updateObservation, "str")}
                     />
@@ -138,10 +139,10 @@ const AddObservation = () => {
                     <label htmlFor="obs-image" className="studyLabel">Image Url:</label>
                     <input
                         id="obs-image"
-                        required autoFocus
+                        required
                         type="text"
                         name="image"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder="Add an image url (optional)"
                         value={observation.image}
                         onChange={(e) => updateForm(e, updateObservation, "str")}
@@ -149,12 +150,20 @@ const AddObservation = () => {
                 </div>
             </fieldset>
 
-            <button
-                onClick={(clickEvent) => { handleSaveObservation(clickEvent) }}
-                className="btn btn-primary"
-            >
-                Submit
-            </button>
+            <div className="studyForm__btnGroup">
+                <button
+                    onClick={(clickEvent) => { handleSaveObservation(clickEvent) }}
+                    className="btn__large"
+                >
+                    Submit
+                </button>
+                <button
+                    onClick={() => { navigate(-1) }}
+                    className="btn__cancel__large"
+                >
+                    Cancel
+                </button>
+            </div>
 
             {formError && <div className="alert alert-danger">Please fill in all of the required fields.</div>}
         </form>

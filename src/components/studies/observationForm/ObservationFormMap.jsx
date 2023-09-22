@@ -70,9 +70,11 @@ import Map, {
     const API_KEY = import.meta.env.VITE_MAPBOX_TOKEN
   
       return (<>
-          <button onClick={(e) => {handleGeolocateClick(e)}}>Use My Location</button>
+          <button className="btn__medium fadeIn"
+              onClick={(e) => { handleGeolocateClick(e) }}
+          >Use My Location</button>
 
-          <section className="observationMapContainer">
+          <section className="observationMapContainer fadeIn">
               <Map
                   mapboxAccessToken={API_KEY}
                   initialViewState={{
@@ -80,7 +82,7 @@ import Map, {
                       latitude: 0,
                       zoom: 2
                   }}
-                  style={{ width: '100%', height: '45vh' }}
+                  style={{ width: '100%', height: '55vh' }}
                   onLoad={onMapLoad}
                   onRender={isControlMounted}
                   reuseMaps
@@ -108,7 +110,7 @@ import Map, {
                   <NavigationControl position="top-left" />
               </Map>
           </section>
-          <button onClick={(e) => {
+          <button className="btn__cancel__small" onClick={(e) => {
             e.preventDefault
             setMapLoaded(false)
             setLocateControlMounted(false)

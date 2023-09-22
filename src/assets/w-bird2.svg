@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 561.73 311.48">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Mooli-Regular, Mooli;
+        font-size: 60px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <path class="cls-2" d="m237.59,34.02c0-5.16-4.19-9.35-9.35-9.35s-9.35,4.19-9.35,9.35,4.19,9.35,9.35,9.35,9.35-4.19,9.35-9.35Zm-15.98,0c0-3.66,2.97-6.63,6.63-6.63s6.63,2.97,6.63,6.63-2.97,6.63-6.63,6.63-6.63-2.97-6.63-6.63Z"/>
+        <circle class="cls-2" cx="228.24" cy="34.02" r="4.85" transform="translate(4.35 89.93) rotate(-22.5)"/>
+        <path class="cls-2" d="m253.89,8.09v54.09c18.1-10.37,36.99-27.05,36.99-27.05,0,0-18.89-16.67-36.99-27.05Z"/>
+        <path class="cls-2" d="m395.22,131.67l-3.49-2.37-22.28,32.89-1.47-.97,22.2-32.78-18.64-12.62-22.33,32.97-118.5-78.55c.31,0,.63.02.94.02,4.99,0,11.33-2.33,18-5.78V5.78c-6.05-3.13-11.83-5.33-16.58-5.72v-.07h-44v4.22h25.9c-1.46.79-2.86,1.68-4.19,2.67h-31.7v4.22h26.88c-13.08,13.68-15.16,42.38-15.72,94.31-.08,1.93-.09,3.86-.06,5.79,0,.95-.02,1.91-.02,2.88h.12c1.44,30.66,16.97,60.25,44.52,78.51,45.91,30.43,107.79,17.89,138.23-28.02l-.07-.04,22.25-32.86ZM227.39,21.49c6.92,0,12.54,5.61,12.54,12.54s-5.61,12.54-12.54,12.54-21.13-12.54-21.13-12.54c0,0,14.21-12.54,21.13-12.54Zm13.96,154.88c-32.83-21.92-40.19-62.27-18.28-95.1l118.89,79.38c-21.92,32.83-67.79,37.64-100.62,15.72Z"/>
+        <path class="cls-2" d="m290.02,159.47h0s17.97,12.05,17.97,12.05c7.33,4.92,17.26,2.96,22.18-4.37l-17.97-12.05c-7.33-4.92-17.26-2.96-22.18,4.37Z"/>
+        <path class="cls-2" d="m252.31,161.86h0s17.97,12.05,17.97,12.05c7.33,4.92,17.26,2.96,22.18-4.37h0s-17.97-12.05-17.97-12.05c-7.33-4.92-17.26-2.96-22.18,4.37Z"/>
+        <path class="cls-2" d="m296.33,146.14h0l-17.97-12.05c-7.33-4.92-17.26-2.96-22.18,4.37h0s17.97,12.05,17.97,12.05c7.33,4.92,17.26,2.96,22.18-4.37Z"/>
+      </g>
+      <text class="cls-1" transform="translate(71.59 204.21) rotate(40.45) scale(1.03 1)"><tspan x="0" y="0">W</tspan></text>
+      <text class="cls-1" transform="translate(128.71 249.27) rotate(30.31) scale(1.03 1)"><tspan x="0" y="0">i</tspan></text>
+      <text class="cls-1" transform="translate(150.02 261.47) rotate(25.07) scale(1.03 1)"><tspan x="0" y="0">l</tspan></text>
+      <text class="cls-1" transform="translate(175.58 273.51) rotate(17.68) scale(1.03 1)"><tspan x="0" y="0">d</tspan></text>
+      <text class="cls-1" transform="translate(219.07 286.57) rotate(9.04) scale(1.03 1)"><tspan x="0" y="0">e</tspan></text>
+      <text class="cls-1" transform="translate(258.54 292.14) rotate(1.99) scale(1.03 1)"><tspan x="0" y="0">r</tspan></text>
+      <text class="cls-1" transform="translate(291.58 294.33) rotate(-8.44) scale(1.03 1)"><tspan x="0" y="0">W</tspan></text>
+      <text class="cls-1" transform="translate(361.48 281.91) rotate(-19.97) scale(1.03 1)"><tspan x="0" y="0">a</tspan></text>
+      <text class="cls-1" transform="translate(402.87 265.92) rotate(-27.76) scale(1.03 1)"><tspan x="0" y="0">t</tspan></text>
+      <text class="cls-1" transform="translate(431.16 250.76) rotate(-34.89) scale(1.03 1)"><tspan x="0" y="0">c</tspan></text>
+      <text class="cls-1" transform="translate(462.98 228.16) rotate(-43.48) scale(1.03 1)"><tspan x="0" y="0">h</tspan></text>
+    </g>
+  </g>
+</svg>

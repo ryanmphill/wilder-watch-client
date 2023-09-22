@@ -26,8 +26,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 33%;
+    width: 63%;
     padding-bottom: 8rem;
+}
+@media (min-width: 650px) {
+    .home__lockContainer {
+        width: 43%;
+    }
+}
+@media (min-width: 970px) {
+    .home__lockContainer {
+        width: 36%;
+        padding-bottom: 7rem;
+    }
 }
 
 .home__lock {

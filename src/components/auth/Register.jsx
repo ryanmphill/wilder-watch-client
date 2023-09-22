@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { AuthContext } from "../../context/AuthContext"
+import "./auth.css"
+import wilderLogo from "../../assets/g-bird2.svg"
 
 export const Register = () => {
   const {setToken, setAdmin} = useContext(AuthContext)
@@ -45,50 +47,48 @@ export const Register = () => {
   }
 
   return (
-    <section className="columns is-centered">
-      <form className="column is-two-thirds" onSubmit={handleRegister}>
-        <h1 className="title">Welcome To WilderWatch</h1>
-        <p className="subtitle">Create an account</p>
-        <div className="field">
-          <label className="label">First Name</label>
-          <div className="control">
-            <input className="input" type="text" ref={firstName} />
+    <section className="authFormContainer fadeIn">
+      <form className="authForm" onSubmit={handleRegister}>
+        <div className="authForm__headerLogoContainer">
+          <div className="authForm__logoContainer">
+            <img src={wilderLogo} alt="logo" className="authForm__logo"></img>
           </div>
+          <h1 className="authFormHeader">Welcome To WilderWatch</h1>
+          <div className="flexPlaceholder"> </div>
+        </div>
+        <h3 className="authFormSubHeader">Create an account</h3>
+        <div className="authForm__field">
+          <label className="authForm__label">First Name</label>
+            <input className="authForm__control" type="text" ref={firstName} />
         </div>
 
-        <div className="field">
-          <label className="label">Last Name</label>
-          <div className="control">
-            <input className="input" type="text" ref={lastName} />
-          </div>
+        <div className="authForm__field">
+          <label className="authForm__label">Last Name</label>
+            <input className="authForm__control" type="text" ref={lastName} />
         </div>
 
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control">
-            <input className="input" type="text" ref={username} />
-          </div>
+        <div className="authForm__field">
+          <label className="authForm__label">Username</label>
+            <input className="authForm__control" type="text" ref={username} />
         </div>
 
-        <div className="field">
-          <label className="label">Email</label>
-          <div className="control">
-            <input className="input" type="email" ref={email} />
-          </div>
+        <div className="authForm__field">
+          <label className="authForm__label">Email</label>
+            <input className="authForm__control" type="email" ref={email} />
         </div>
 
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="field-body">
-            <div className="field">
-              <p className="control is-expanded">
-                <input className="input" type="password" placeholder="Password" ref={password} />
+        <div className="authForm__field">
+          <label className="authForm__label">Password</label>
+          <div className="authForm__field-body">
+            <div className="authForm__field">
+              <p>
+                <input className="authForm__control" type="password" placeholder="Password" ref={password} />
               </p>
             </div>
 
-            <div className="field">
-              <p className="control is-expanded">
-                <input className="input" type="password" placeholder="Verify Password" ref={verifyPassword} />
+            <div className="authForm__field">
+              <p>
+                <input className="authForm__control" type="password" placeholder="Verify Password" ref={verifyPassword} />
               </p>
             </div>
           </div>
@@ -96,17 +96,20 @@ export const Register = () => {
 
         {
           showPasswordDialog &&
-          <div className="has-text-danger">
-            Password fields must be matching
+          <div className="warning__msg">
+            Password authForm__fields must be matching
           </div>
         }
 
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-link" type="submit">Submit</button>
-          </div>
-          <div className="control">
-            <Link to="/" className="button is-link is-light">Cancel</Link>
+        <div className="authForm__btnGroup">
+            <button className="btn__large" type="submit">Submit</button>
+          <div>
+            <button className="btn__cancel__large"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate("/")
+              }}
+            >Cancel</button>
           </div>
         </div>
 

@@ -167,6 +167,72 @@ body {
   background-color: #e17f46;
 }
 
+.btn__large {
+  align-items: center;
+  appearance: button;
+  background-color: #F36E21;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 100%;
+  line-height: 0.25;
+  margin: 0;
+  padding: 18px 50px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn__large:active {
+  background-color: #c76024;
+}
+
+.btn__large:hover {
+  background-color: #e17f46;
+}
+
+.btn__cancel__large {
+  align-items: center;
+  appearance: button;
+  background-color: #a7a7a7;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 100%;
+  line-height: 0.25;
+  margin: 0;
+  padding: 18px 50px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn__cancel__large:active {
+  background-color: #2c2b2b;
+}
+
+.btn__cancel__large:hover {
+  background-color: #c6c6c6;
+}
+
 /*edit/delete icon buttons-------------------------------------------------------------*/
 .iconbtn__edit, .iconbtn__dlt {
   width: 2.5rem;

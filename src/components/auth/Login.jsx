@@ -2,6 +2,8 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
 import { AuthContext } from "../../context/AuthContext"
+import wilderLogo from "../../assets/g-bird2.svg"
+import "./auth.css"
 
 export const Login = () => {
   const {setToken, setAdmin} = useContext(AuthContext)
@@ -44,35 +46,40 @@ export const Login = () => {
   )
   /*--------------------------------------------------------------------*/
   return (
-    <section className="columns is-centered">
-      <form className="column is-two-thirds" onSubmit={handleLogin}>
-        <h1 className="title">Welcome Back To WilderWatch</h1>
-        <p className="subtitle">Please sign in</p>
-
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control">
-            <input className="input" type="text" ref={username} />
+    <section className="authFormContainer fadeIn">
+      <form className="authForm loginForm" onSubmit={handleLogin}>
+      <div className="authForm__headerLogoContainer">
+          <div className="authForm__logoContainer">
+            <img src={wilderLogo} alt="logo" className="authForm__logo"></img>
           </div>
+          <h2 className="authFormHeader">Welcome Back To WilderWatch</h2>
+          <div className="flexPlaceholder"> </div>
+        </div>
+        <h3 className="authFormSubHeader">Please Sign In</h3>
+
+        <div className="authForm__field">
+          <label className="authForm__label">Username</label>
+            <input className="authForm__control" type="text" ref={username} />
         </div>
 
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control">
-            <input className="input" type="password" ref={password} />
-          </div>
+        <div className="authForm__field">
+          <label className="authForm__label">Password</label>
+            <input className="authForm__control" type="password" ref={password} />
         </div>
 
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-link" type="submit" >Submit</button>
-          </div>
-          <div className="control">
-            <Link to="/" className="button is-link is-light">Cancel</Link>
+        <div className="authForm__btnGroup">
+            <button className="btn__large" type="submit">Submit</button>
+          <div>
+            <button className="btn__cancel__large"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate("/")
+              }}
+            >Cancel</button>
           </div>
         </div>
         {
-          isUnsuccessful ? <p className="help is-danger">Username or password not valid</p> : ''
+          isUnsuccessful ? <p className="warning__msg">Username or password not valid</p> : ''
         }
       </form>
     </section>
