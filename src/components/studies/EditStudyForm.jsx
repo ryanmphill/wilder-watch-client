@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllRegions } from "../../managers/RegionManager";
 import { getAllStudyTypes } from "../../managers/StudyTypeManager";
 import { editStudy, getSingleStudy } from "../../managers/StudyManager";
+import "./studyForm.css"
 
 const EditStudyForm = () => {
     const { studyId } = useParams()
@@ -90,18 +91,18 @@ const EditStudyForm = () => {
     }
 
     return <article>
-        <form className="studyForm">
+        <form className="studyForm fadeIn">
             <h2 className="studyFormHeader">Update your Study 🖊️</h2>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studyTitle" className="studyLabel">Title:</label>
+                    <label htmlFor="studyTitle" className="studyLabel form-label">Title:</label>
                     <input
                         id="studyTitle"
                         required autoFocus
                         type="text"
                         name="title"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder="Add a title for your study"
                         value={study.title}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -111,13 +112,13 @@ const EditStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studySubject" className="studyLabel">Subject:</label>
+                    <label htmlFor="studySubject" className="studyLabel form-label">Subject:</label>
                     <input
                         id="studySubject"
-                        required autoFocus
+                        required
                         type="text"
                         name="subject"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder="What is the subject of the study?"
                         value={study.subject}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -127,13 +128,13 @@ const EditStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studySummary" className="studyLabel">Summary:</label>
+                    <label htmlFor="studySummary" className="studyLabel form-label">Summary:</label>
                     <textarea
                         id="studySummary"
-                        required autoFocus
+                        required
                         type="text"
                         name="summary"
-                        className="form-control"
+                        className="studyForm__control studyForm--textarea"
                         placeholder="Write a summary to help users understand the study"
                         value={study.summary}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -144,13 +145,13 @@ const EditStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studyDetailsField" className="studyLabel">Details:</label>
+                    <label htmlFor="studyDetailsField" className="studyLabel form-label">Details:</label>
                     <textarea
                         id="studyDetailsField"
-                        required autoFocus
+                        required
                         type="text"
                         name="details"
-                        className="form-control"
+                        className="studyForm__control studyForm--textarea"
                         placeholder="Help your users understand what you are asking of them."
                         value={study.details}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -161,13 +162,13 @@ const EditStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studyStartDate" className="studyLabel">Start Date:</label>
+                    <label htmlFor="studyStartDate" className="studyLabel form-label">Start Date:</label>
                     <input
                         id="studyStartDate"
-                        required autoFocus
+                        required
                         type="date"
                         name="startDate"
-                        className="form-control"
+                        className="studyForm__control"
                         value={study.startDate}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
@@ -176,76 +177,78 @@ const EditStudyForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="studyEndDate" className="studyLabel">End Date:</label>
+                    <label htmlFor="studyEndDate" className="studyLabel form-label">End Date:</label>
                     <input
                         id="studyEndDate"
-                        required autoFocus
+                        required
                         type="date"
                         name="endDate"
-                        className="form-control"
+                        className="studyForm__control"
                         value={study.endDate}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
             </fieldset>
 
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="selectstudyTypeId" className="label-bold">Study Type:</label>
-                    <select
-                        id="selectstudyTypeId"
-                        name="studyTypeId"
-                        value={study.studyTypeId}
-                        onChange={(e) => updateForm(e, updateStudy, "int")}
-                        className="form-control"
-                    >
-                        <option value="0">Select Type of Study</option>
-                        {studyTypes.map((studyType) => (
-                            <option
-                                key={`studyTypeId--${studyType.id}`}
-                                value={studyType.id}
-                            >
-                                {studyType.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </fieldset>
+            <div className="studyForm__flexContainer">
+                <fieldset className="studyForm__flexChild">
+                    <div className="form-group">
+                        <label htmlFor="selectstudyTypeId" className="studyLabel form-label">Study Type:</label>
+                        <select
+                            id="selectstudyTypeId"
+                            name="studyTypeId"
+                            value={study.studyTypeId}
+                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            className="studyForm__control"
+                        >
+                            <option value="0">Select Type of Study</option>
+                            {studyTypes.map((studyType) => (
+                                <option
+                                    key={`studyTypeId--${studyType.id}`}
+                                    value={studyType.id}
+                                >
+                                    {studyType.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset className="studyForm__flexChild">
+                    <div className="form-group">
+                        <label htmlFor="selectregionId" className="studyLabel form-label">
+                            Where is your study taking place?:
+                        </label>
+                        <select
+                            id="selectregionId"
+                            name="regionId"
+                            value={study.regionId}
+                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            className="studyForm__control"
+                        >
+                            <option value="0">Select a regionId</option>
+                            {regions.map((region) => (
+                                <option
+                                    key={`regionId--${region.id}`}
+                                    value={region.id}
+                                >
+                                    {region.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="selectregionId" className="label-bold">
-                        Where is your study taking place?:
-                    </label>
-                    <select
-                        id="selectregionId"
-                        name="regionId"
-                        value={study.regionId}
-                        onChange={(e) => updateForm(e, updateStudy, "int")}
-                        className="form-control"
-                    >
-                        <option value="0">Select a regionId</option>
-                        {regions.map((region) => (
-                            <option
-                                key={`regionId--${region.id}`}
-                                value={region.id}
-                            >
-                                {region.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="studyImgUrl" className="studyLabel">Image Url:</label>
+                    <label htmlFor="studyImgUrl" className="studyLabel form-label">Image Url:</label>
                     <input
                         id="studyImgUrl"
-                        required autoFocus
+                        required
                         type="text"
                         name="imageUrl"
-                        className="form-control"
+                        className="studyForm__control"
                         placeholder="Add an image url (optional)"
                         value={study.imageUrl}
                         onChange={(e) => updateForm(e, updateStudy, "str")}
@@ -253,12 +256,20 @@ const EditStudyForm = () => {
                 </div>
             </fieldset>
 
-            <button
-                onClick={(clickEvent) => { handleSaveStudy(clickEvent) }}
-                className="btn btn-primary"
-            >
-                Submit
-            </button>
+            <div className="studyForm__btnGroup">
+                <button
+                    onClick={(clickEvent) => { handleSaveStudy(clickEvent) }}
+                    className="btn__large"
+                >
+                    Submit
+                </button>
+                <button
+                        onClick={() => { navigate(-1) }}
+                        className="btn__cancel__large"
+                >
+                    Cancel
+                </button>
+            </div>
 
             {formError && <div className="alert alert-danger">Please fill in all of the required fields.</div>}
         </form>

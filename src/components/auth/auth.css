@@ -1,0 +1,96 @@
+.authForm {
+    padding: 1rem;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6rem;
+    margin-top: 1.5rem;
+    border-radius: 6px;
+    background-color: rgba(136, 152, 132, 0.25);
+}
+
+.loginForm {
+    margin-top: 7rem;
+    margin-bottom: 0;
+}
+
+.authForm__label {
+    margin-bottom: 0.25rem;
+    /* width: 8rem;
+    display: inline-block; */
+}
+
+.authForm__headerLogoContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 6rem;
+    margin-bottom: 1rem;
+}
+
+.authFormHeader {
+    text-align: center;
+}
+.authFormHeader h2, .authFormHeader h1 {
+    margin: 0;
+}
+
+.authForm__logoContainer, .flexPlaceholder {
+    width: 15%;
+}
+
+.authForm__logoContainer {
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.authForm__logo {
+    height: 70%;
+    margin-right: 1rem;
+}
+@media (min-width: 600px) {
+    .authForm__logo {
+        height: 90%;
+        margin: 0;
+    }
+
+    .loginForm {
+        margin-top: 6rem;
+        width: 75%;
+    }
+}
+
+.authForm__control {
+    display: block;
+    width: 100%;
+    box-shadow: -1px 1px 5px rgba(43, 46, 46, 0.20);
+    border-radius: 10px;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.authForm__btnGroup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+    margin-top: 1rem;
+}
+
+.warning_msg {
+    color: rgb(233, 13, 13);
+}
+
+@media (min-width: 750px) {
+    .authForm {
+        width: 84%;
+    }
+}
