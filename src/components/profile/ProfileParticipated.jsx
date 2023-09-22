@@ -4,12 +4,23 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import deleteIcon from "../../assets/delete-icon.svg"
 import editIcon from "../../assets/edit-icon.svg"
+import { deleteStudy } from "../../managers/StudyManager"
 
 const ProfileParticipated = () => {
-    const { participatedStudies } = useContext(ProfileContext)
+    const { participatedStudies, fetchParticipatedStudies, fetchAuthoredStudies } = useContext(ProfileContext)
     const { currentUserId } = useContext(AuthContext)
     const [confirmation, showConfirmation] = useState(0)
     const navigate = useNavigate()
+
+    const handleDeleteClick = async (id) => {
+        try {
+            await deleteStudy(id)
+            fetchParticipatedStudies()
+            fetchAuthoredStudies()
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     return (participatedStudies.length > 0 ?
         <article className="fadeIn">
