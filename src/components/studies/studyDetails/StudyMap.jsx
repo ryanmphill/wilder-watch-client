@@ -20,15 +20,6 @@ import mapboxgl from 'mapbox-gl';
     // State needed to set the initial view of the map
     const [initialMapBounds, setInitialMapBounds] = useState(null)
     const [startingViewLoaded, setViewLoaded] = useState(false)
-  
-    useEffect(
-      () => {
-        if (currentGeolocation) {
-          console.log("current location", currentGeolocation)
-        }
-      },
-      [currentGeolocation]
-    )
 
     // MAKE ALL MARKERS VISIBLE ON INITIAL RENDERING OF MAP ///////////////////////////////////////////////////////////
     /* This useEffect takes the center observation point and the point furthest from it (both calculated by the server) 
@@ -43,13 +34,25 @@ import mapboxgl from 'mapbox-gl';
                 const radius = center.distanceTo(furthest)
                 const mapBounds = center.toBounds(radius)
                 setInitialMapBounds(mapBounds)
-                setViewLoaded(true)
             // If there are no observations yet, the center points default to zero, and the furthest points will be null 
             } else if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon === null && furthestLat === null) {
+                /* Set startingViewLoaded to true to allow rendering of map. Since the initialMapBounds are null, the view of
+                the map will default to the longitude, latitude, and zoom defined in the initialStateView prop of the Map component, so
+                0, 0, and 1, respectively. */
                 setViewLoaded(true)
             }
         },
         [centerLon, centerLat, furthestLon, furthestLat]
+    )
+
+    // If and when the initial map bounds are set, set startingViewLoaded to true and allow rendering of map
+    useEffect(
+      () => {
+        if (initialMapBounds !== null && !startingViewLoaded) {
+          setViewLoaded(true)
+        }
+      },
+      [initialMapBounds, startingViewLoaded, setViewLoaded]
     )
   
     const markers = useMemo(() => observations.map(obj => (
@@ -91,7 +94,7 @@ import mapboxgl from 'mapbox-gl';
         style={{width: '100%', height: '75vh'}}
         reuseMaps
         mapStyle="mapbox://styles/mapbox/outdoors-v12"
-        // projection={"mercator"} // Default projection is now globe
+        projection={"mercator"}
       >
         <GeolocateControl position="top-left"
         onGeolocate={(e) => setCurrentGeolocation({
@@ -108,7 +111,7 @@ import mapboxgl from 'mapbox-gl';
               closeButton={false}
               onClose={() => setCurrentGeolocation(null)}
             >
-              <div>
+              <div className="popup">
                 {currentGeolocation.latitude}°, {currentGeolocation.longitude}°
               </div>
             </Popup>
