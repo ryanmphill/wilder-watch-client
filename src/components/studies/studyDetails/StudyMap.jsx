@@ -29,10 +29,15 @@ import mapboxgl from 'mapbox-gl';
     useEffect(
         () => {
             if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon && furthestLat) {
-                const center = new mapboxgl.LngLat(centerLon, centerLat)
-                const furthest = new mapboxgl.LngLat(furthestLon, furthestLat)
-                const radius = center.distanceTo(furthest)
-                const mapBounds = center.toBounds(radius)
+                let mapBounds = new mapboxgl.LngLatBounds()
+                observations.forEach((obs) => {
+                  mapBounds.extend([obs.longitude, obs.latitude])
+                })
+                // const center = new mapboxgl.LngLat(centerLon, centerLat)
+                // const furthest = new mapboxgl.LngLat(furthestLon, furthestLat)
+                // const radius = center.distanceTo(furthest)
+                // const mapBounds = center.toBounds(radius)
+                console.log(mapBounds)
                 setInitialMapBounds(mapBounds)
             // If there are no observations yet, the center points default to zero, and the furthest points will be null 
             } else if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon === null && furthestLat === null) {
@@ -87,6 +92,7 @@ import mapboxgl from 'mapbox-gl';
         mapboxAccessToken={API_KEY}
         initialViewState={{
           bounds: initialMapBounds,
+          fitBoundsOptions: {padding: 50},
           longitude: centerLon,
           latitude: centerLat,
           zoom: 1
