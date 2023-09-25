@@ -3,35 +3,27 @@ import Map, {
     NavigationControl,
     FullscreenControl,
     GeolocateControl } from 'react-map-gl';
-  import { useState, useEffect, useRef, useCallback } from 'react'
+  import { useState, useEffect, useRef } from 'react'
   import 'mapbox-gl/dist/mapbox-gl.css';
   
   
   const ObservationFormMap = ({ observation, updateObservation, setShowMap }) => {
   
     const [currentGeolocation, setCurrentGeolocation] = useState(null)
-    const [mapLoaded, setMapLoaded] = useState(false)
     const [locateControlMounted, setLocateControlMounted] = useState(false)
     const [locationLoaded, setLocationLoaded] = useState(false)
     
     // GET GEOLOCATION WITH MAP CONTROLS USING USEREF()
     const geoControlRef = useRef(null);
     
-    // This function runs when the first visually complete rendering of the map component has occurred.
-    const onMapLoad = useCallback(() => {
-        if (mapLoaded === false) {
-            setMapLoaded(true)
-        }
-      }, []);
-    
-    /* The geolocation controls are added to the map after onMapLoad() runs, and there isn't a built in 
-       method for finding out when the controls are fully mounted so that they can be interacted with. 
-       This function uses the Map's built in onRender() method to continue checking if the reference to
-       geolocateControl has a truthy value for its ._setup property while the map finishes rendering. When
-       ._setup is true, the controls have been fully added to the map.
+    /* The geolocation controls are added to the map after the initial rendering of the map occurs,
+     and there isn't a built in method for finding out when the controls are fully mounted so that they 
+     can be interacted with. This function uses the Map's built in onRender() method to continue checking 
+     if the reference to geolocateControl has a truthy value for its ._setup property while the map finishes 
+     rendering. When ._setup is true, the controls have been fully added to the map.
     */
     const isControlMounted = () => {
-        if (mapLoaded && !locateControlMounted && geoControlRef.current._setup) {
+        if (!locateControlMounted && geoControlRef?.current?._setup) {
             setLocateControlMounted(true)
         }
     }
@@ -39,12 +31,13 @@ import Map, {
     // When component is initially rendered and map has been fully loaded, trigger geolocation
     useEffect(
         () => {
-            if (locateControlMounted && mapLoaded && !locationLoaded) {
+            if (locateControlMounted && !locationLoaded) {
+                console.log("location controls mounted")
                 geoControlRef.current?.trigger();
                 setLocationLoaded(true)
             }
         },
-        [locateControlMounted, mapLoaded]
+        [locateControlMounted]
     )
 
     const handleGeolocateClick = (e) => {
@@ -83,8 +76,8 @@ import Map, {
                       zoom: 2
                   }}
                   style={{ width: '100%', height: '55vh' }}
-                  onLoad={onMapLoad}
                   onRender={isControlMounted}
+                  projection={"mercator"}
                   reuseMaps
                   mapStyle="mapbox://styles/mapbox/outdoors-v12"
               >
@@ -112,7 +105,6 @@ import Map, {
           </section>
           <button className="btn__cancel__small" onClick={(e) => {
             e.preventDefault
-            setMapLoaded(false)
             setLocateControlMounted(false)
             setLocationLoaded(false)
             setShowMap(false)
