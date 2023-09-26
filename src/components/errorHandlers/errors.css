@@ -1,0 +1,8 @@
+.errorPage {
+    padding: 1rem 1.5rem;
+}
+
+.errorPage__header {
+    font-size: xx-large;
+    font-weight: bold;
+}
