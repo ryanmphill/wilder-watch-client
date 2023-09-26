@@ -70,6 +70,7 @@ import Map, {
           <section className="observationMapContainer fadeIn">
               <Map
                   mapboxAccessToken={API_KEY}
+                  id="observationForm__map"
                   initialViewState={{
                       longitude: 0,
                       latitude: 0,
