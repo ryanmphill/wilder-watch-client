@@ -10,10 +10,10 @@ import Map, {
   import 'mapbox-gl/dist/mapbox-gl.css';
   import Pin from './Pin';
   import './studyMap.css';
-import mapboxgl from 'mapbox-gl';
+  import mapboxgl from 'mapbox-gl';
   
   
-  const StudyMap = ({ observations, centerLat }) => {
+  const StudyMap = ({ observations }) => {
   
     const [popupDisplay, setPopupDisplay] = useState(null)
     const [currentGeolocation, setCurrentGeolocation] = useState(null)
@@ -31,34 +31,23 @@ import mapboxgl from 'mapbox-gl';
        point near the edge of the map or across the antimeridian.  */
     useEffect(
         () => {
-            console.log("obs length", observations.length)
-            console.log("starting view loaded", startingViewLoaded)
-            if (observations.length >= 1 && !startingViewLoaded) {
+            if (observations.length >= 1 && !startingViewLoaded && initialMapBounds === null) {
                 let mapBounds = new mapboxgl.LngLatBounds()
                 observations.forEach((obs) => {
                   mapBounds.extend([obs.longitude, obs.latitude])
                 })
                 console.log(mapBounds)
                 setInitialMapBounds(mapBounds)
+                setViewLoaded(true)
             // If there are no observations yet, set startingViewLoaded to true and leave initialMapBounds null 
-            } else if (observations.length < 1 && !startingViewLoaded && centerLat === 0) {
+            } else if (observations.length < 1 && !startingViewLoaded && initialMapBounds === null) {
                 /* Set startingViewLoaded to true to allow rendering of map. Since the initialMapBounds are null, the view of
                 the map will default to the longitude, latitude, and zoom defined in the initialStateView prop of the Map component, so
                 0, 0, and 1, respectively. */
                 setViewLoaded(true)
             }
         },
-        [observations, startingViewLoaded, setViewLoaded, setInitialMapBounds, centerLat]
-    )
-
-    // If and when the initial map bounds are set, set startingViewLoaded to true and allow rendering of map
-    useEffect(
-      () => {
-        if (initialMapBounds !== null && !startingViewLoaded) {
-          setViewLoaded(true)
-        }
-      },
-      [initialMapBounds, startingViewLoaded, setViewLoaded]
+        [observations, startingViewLoaded, setViewLoaded, setInitialMapBounds, initialMapBounds]
     )
   
     const markers = useMemo(() => observations.map(obj => (
@@ -91,6 +80,7 @@ import mapboxgl from 'mapbox-gl';
       <section className="studyMapContainer">
         <Map
         mapboxAccessToken={API_KEY}
+        id="studyDetails__map"
         initialViewState={{
           bounds: initialMapBounds,
           fitBoundsOptions: {padding: 50},

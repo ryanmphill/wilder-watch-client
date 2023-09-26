@@ -20,6 +20,22 @@ export const getSingleStudy = async (id) => {
   return await res.json();
 }
 
+export const studyLoader = async ({ params }) => {
+  // The errorElement automatically catches any exceptions
+  const res = await fetch(`http://localhost:8000/studies/${params.studyId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+  });
+  if (!res.ok) {
+    throw new Response("Not Found", { status: res.status });
+  }
+  const data = await res.json()
+  return data
+}
+
 export const createNewStudy = async (newStudy) => {
   const res = await fetch(`http://localhost:8000/studies`, {
     method: "POST",
