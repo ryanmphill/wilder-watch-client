@@ -18,6 +18,8 @@ import Profile from "../components/profile/Profile";
 import ProfileActivity from "../components/profile/ProfileActivity";
 import ProfileParticipated from "../components/profile/ProfileParticipated";
 import ProfileAuthored from "../components/profile/ProfileAuthored";
+import { studyLoader } from "../managers/StudyManager";
+import { HandleException } from "../components/errorHandlers/HandleException";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -32,6 +34,8 @@ const router = createBrowserRouter(
                     <Route
                         element={<StudyDetails />}
                         path="/study/:studyId"
+                        loader={studyLoader}
+                        errorElement={<HandleException />}
                     />
                     <Route
                         element={<Profile />}

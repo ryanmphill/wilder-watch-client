@@ -6,52 +6,45 @@ import Map, {
     FullscreenControl,
     GeolocateControl, 
     } from 'react-map-gl';
-  import { useState, useEffect, useMemo} from 'react'
+  import { useState, useMemo} from 'react'
   import 'mapbox-gl/dist/mapbox-gl.css';
   import Pin from './Pin';
   import './studyMap.css';
-import mapboxgl from 'mapbox-gl';
+  import mapboxgl from 'mapbox-gl';
   
   
-  const StudyMap = ({ observations, centerLon, centerLat, furthestLon, furthestLat }) => {
+  const StudyMap = ({ observations }) => {
   
     const [popupDisplay, setPopupDisplay] = useState(null)
     const [currentGeolocation, setCurrentGeolocation] = useState(null)
-    // State needed to set the initial view of the map
-    const [initialMapBounds, setInitialMapBounds] = useState(null)
-    const [startingViewLoaded, setViewLoaded] = useState(false)
-  
-    useEffect(
-      () => {
-        if (currentGeolocation) {
-          console.log("current location", currentGeolocation)
-        }
-      },
-      [currentGeolocation]
-    )
 
-    // MAKE ALL MARKERS VISIBLE ON INITIAL RENDERING OF MAP ///////////////////////////////////////////////////////////
-    /* This useEffect takes the center observation point and the point furthest from it (both calculated by the server) 
-        to set the initial map view. The mapbox gl library lets us create instances of the LngLat class and use those
-        instances to get the radius in meters and then create a `LngLatBounds` object that the Map can use to set the initial view
-        that will allow all of the observation markers to be visible. */
-    useEffect(
-        () => {
-            if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon && furthestLat) {
-                const center = new mapboxgl.LngLat(centerLon, centerLat)
-                const furthest = new mapboxgl.LngLat(furthestLon, furthestLat)
-                const radius = center.distanceTo(furthest)
-                const mapBounds = center.toBounds(radius)
-                setInitialMapBounds(mapBounds)
-                setViewLoaded(true)
-            // If there are no observations yet, the center points default to zero, and the furthest points will be null 
-            } else if (typeof centerLon === 'number' && typeof centerLat === 'number' && furthestLon === null && furthestLat === null) {
-                setViewLoaded(true)
-            }
-        },
-        [centerLon, centerLat, furthestLon, furthestLat]
-    )
-  
+    // MAKE ALL MARKERS VISIBLE ON INITIAL RENDERING OF MAP
+    /* This function creates an instance of `LngLatBounds` from the MapboxGl library that the Map can use to 
+       set the initial view and allow all of the observation markers to be visible. The LngLatBounds object 
+       characterizes an imaginary bounding box with two properties: a coordinate for the northeast corner, and 
+       a coordinate for the southwest corner. First, an object with null values is initialized. Next, the .extend()
+       method incrementally expands the bounding box to include each coordinates for the markers in the `observations`
+       array. As this happens, the NE and SW properties are automatically calculated and normalized to account for
+       point near the edge of the map or across the antimeridian.  */
+
+    const initialMapBounds = useMemo(() => {
+      if (observations.length >= 1) {
+        let mapBounds = new mapboxgl.LngLatBounds()
+        observations.forEach((obs) => {
+          mapBounds.extend([obs.longitude, obs.latitude])
+        })
+        console.log(mapBounds)
+        return mapBounds
+        // If there are no observations yet, set initialMapBounds to null 
+      } else if (observations.length < 1) {
+        /* Since the initialMapBounds are null, the view of the map will default to the longitude,
+        latitude, and zoom defined in the initialStateView prop of the Map component, so
+        0, 0, and 1, respectively. */
+        return null
+      }
+    } ,[observations])
+    
+    //CREATE MARKER ON MAP FOR EACH OBSERVATION
     const markers = useMemo(() => observations.map(obj => (
       <Marker key={obj.id}
         longitude={obj.longitude}
@@ -78,20 +71,21 @@ import mapboxgl from 'mapbox-gl';
     const API_KEY = import.meta.env.VITE_MAPBOX_TOKEN
   
     return (
-    startingViewLoaded &&
       <section className="studyMapContainer">
         <Map
         mapboxAccessToken={API_KEY}
+        id="studyDetails__map"
         initialViewState={{
           bounds: initialMapBounds,
-          longitude: centerLon,
-          latitude: centerLat,
+          fitBoundsOptions: {padding: 50},
+          longitude: 0,
+          latitude: 0,
           zoom: 1
         }}
         style={{width: '100%', height: '75vh'}}
         reuseMaps
         mapStyle="mapbox://styles/mapbox/outdoors-v12"
-        // projection={"mercator"} // Default projection is now globe
+        projection={"mercator"}
       >
         <GeolocateControl position="top-left"
         onGeolocate={(e) => setCurrentGeolocation({
@@ -108,7 +102,7 @@ import mapboxgl from 'mapbox-gl';
               closeButton={false}
               onClose={() => setCurrentGeolocation(null)}
             >
-              <div>
+              <div className="popup">
                 {currentGeolocation.latitude}°, {currentGeolocation.longitude}°
               </div>
             </Popup>

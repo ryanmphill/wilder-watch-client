@@ -226,7 +226,7 @@ const EditStudyForm = () => {
                             onChange={(e) => updateForm(e, updateStudy, "int")}
                             className="studyForm__control"
                         >
-                            <option value="0">Select a regionId</option>
+                            <option value="0">Select a region</option>
                             {regions.map((region) => (
                                 <option
                                     key={`regionId--${region.id}`}

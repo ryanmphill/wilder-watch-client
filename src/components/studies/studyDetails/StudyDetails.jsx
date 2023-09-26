@@ -1,6 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { getSingleStudy } from "../../../managers/StudyManager"
-import { useEffect, useState } from "react"
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom"
 import StudyMap from "./StudyMap"
 import "./studyDetails.css"
 
@@ -8,26 +6,11 @@ import "./studyDetails.css"
 const StudyDetails = () => {
     const { studyId } = useParams()
 
-    const [study, setStudy] = useState({})
-    const [studyImg, setStudyImg] = useState({})
-    const [observations, setObservations] = useState([])
+    const study = useLoaderData()
+    const observations = study.observations
+    const studyImg = {'--bg-image': `url(${study.image_url})`}
 
     const navigate = useNavigate()
-
-    const fetchStudy = async () => {
-        const studyData = await getSingleStudy(studyId)
-        setStudy(studyData)
-        setObservations(studyData.observations)
-        const bgImage = {'--bg-image': `url(${studyData.image_url})`}
-        setStudyImg(bgImage)
-    }
-
-    useEffect(
-        () => {
-            fetchStudy()
-        },
-        [studyId]
-    )
 
     return (study &&
         <article>
@@ -60,22 +43,9 @@ const StudyDetails = () => {
 
                     <section className="studyDetails__mapContainer">
                         <h3>Observations from Study Participants</h3>
-                        <StudyMap observations={observations}
-                            centerLon={study.average_longitude}
-                            centerLat={study.average_latitude}
-                            furthestLon={study.furthest_longitude}
-                            furthestLat={study.furthest_latitude} />
+                        <StudyMap observations={observations} />
                     </section>
                 </div>
-                {/*
-                    observations.length > 0 &&
-                    observations.map((observation) =>
-                        <div key={`observation--${observation.id}`}>
-                            <div>----------------------------</div>
-                            <div>Coordinates: {observation.latitude}, {observation.longitude}</div>
-                            <div>Observed By: {observation.participant_name}</div>
-                        </div>)
-                */}
             </div>
         </article>)
 }
