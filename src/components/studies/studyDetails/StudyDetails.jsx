@@ -1,6 +1,4 @@
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom"
-import { getSingleStudy } from "../../../managers/StudyManager"
-import { useEffect, useState } from "react"
 import StudyMap from "./StudyMap"
 import "./studyDetails.css"
 
@@ -8,11 +6,9 @@ import "./studyDetails.css"
 const StudyDetails = () => {
     const { studyId } = useParams()
 
-    /*-------------------------------------------------------------*/
     const study = useLoaderData()
     const observations = study.observations
     const studyImg = {'--bg-image': `url(${study.image_url})`}
-    /*-------------------------------------------------------------*/
 
     const navigate = useNavigate()
 
