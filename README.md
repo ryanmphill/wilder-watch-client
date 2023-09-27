@@ -97,21 +97,20 @@ Please reach out to me or open an issue, and I will try to resolve it ASAP.
 ## Map
 
 ![map](public/screenshots/map.png)
-![map](public/screenshots/map_mobile.png)
+![mobile map](public/screenshots/map_mobile.png)
 
 ## Profile
 
-![map](public/screenshots/profile.png)
-![map](public/screenshots/profile_mobile.png)
+![profile](public/screenshots/profile.png)
+![mobile profile](public/screenshots/profile_mobile.png)
 
 ## Forms
 
-![map](public/screenshots/form.png)
-![map](public/screenshots/form_mobile.png)
+![form](public/screenshots/form.png)
+![mobile form](public/screenshots/form_mobile.png)
 ### Recording an observation
-![map](public/screenshots/)
-![map](public/screenshots/obs_form_mobile.png)
-![map](public/screenshots/mobile_map_video.gif)
+![observation form](public/screenshots/obs_form_mobile.png)
+![geolocate video](public/screenshots/mobile_map_video.gif)
 
 # React + Vite
 
