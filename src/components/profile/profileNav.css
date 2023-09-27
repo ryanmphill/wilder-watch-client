@@ -26,6 +26,19 @@
     outline: none;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.87);
+    font-size: x-small;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media (min-width: 385px) {
+    .profileNavLink {
+      font-size: small;
+    }
+  }
+  @media (min-width: 500px) {
+    .profileNavLink {
+      font-size: inherit;
+    }
   }
   
   .profileNav--hoverEffect {

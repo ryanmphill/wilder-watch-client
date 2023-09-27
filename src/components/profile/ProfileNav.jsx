@@ -35,7 +35,7 @@ export const ProfileNav = ({ profileId }) => {
                 e.preventDefault()
                 navigate(`participated`)
             }}>
-            Studies Participated In
+            Studies Participated
         </button>
         </div>
 
