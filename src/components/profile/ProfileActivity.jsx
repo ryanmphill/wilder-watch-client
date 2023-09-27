@@ -1,10 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from "react"
-import { ProfileContext } from "../../context/ProfileContext"
 import { formatDate } from "../../utils/helpers/formatDate"
-import { Link } from "react-router-dom"
+import { Link, useRouteLoaderData } from "react-router-dom"
 
 const ProfileActivity = () => {
-    const { profileData } = useContext(ProfileContext)
+    const profileData = useRouteLoaderData("profileRoot") // Access loader data from the root profile route
     
     return (profileData &&
         <article className="fadeIn" id="activity--article">
