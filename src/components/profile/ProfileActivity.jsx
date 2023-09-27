@@ -1,17 +1,24 @@
-import { useCallback, useContext, useEffect, useState } from "react"
-import { ProfileContext } from "../../context/ProfileContext"
 import { formatDate } from "../../utils/helpers/formatDate"
-import { Link } from "react-router-dom"
+import { Link, useRouteLoaderData } from "react-router-dom"
 
 const ProfileActivity = () => {
-    const { profileData } = useContext(ProfileContext)
+    const profileData = useRouteLoaderData("profileRoot") // Access loader data from the root profile route
     
     return (profileData &&
         <article className="fadeIn" id="activity--article">
             <section className="activity__userStats">
-                <div className="activity__stat">{profileData.observation_count} observations made</div>
-                <div className="activity__stat">{profileData.studies_participated_count} studies participated in</div>
-                <div className="activity__stat">Member since: {profileData.date_joined && formatDate(profileData.date_joined)}</div>
+                <div className="activity__stat">
+                    <div className="activity__stat__label">Observations made: </div> 
+                    <div className="activity__stat__data">{profileData.observation_count}</div>
+                </div>
+                <div className="activity__stat">
+                    <div className="activity__stat__label">Studies participated: </div> 
+                    <div className="activity__stat__data">{profileData.studies_participated_count}</div>
+                </div>
+                <div className="activity__stat">
+                    <div className="activity__stat__label">Member since: </div> 
+                    <div className="activity__stat__data">{profileData.date_joined && formatDate(profileData.date_joined)}</div>
+                </div>
             </section>
             {
                     profileData.authored_studies_count > 0 &&

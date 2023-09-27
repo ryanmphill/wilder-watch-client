@@ -20,11 +20,15 @@ import ProfileParticipated from "../components/profile/ProfileParticipated";
 import ProfileAuthored from "../components/profile/ProfileAuthored";
 import { studyLoader } from "../managers/StudyManager";
 import { HandleException } from "../components/errorHandlers/HandleException";
+import { profileLoader } from "../managers/UserManager";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            <Route element={<ApplicationLayout />} path="/">
+            <Route element={<ApplicationLayout />} 
+                path="/"
+                errorElement={<HandleException />}
+            >
                 <Route element={<Login />} path="/login" />
                 <Route element={<Register />} path="/register" />
                 <Route element={<NavBar />} path="/">
@@ -40,6 +44,9 @@ const router = createBrowserRouter(
                     <Route
                         element={<Profile />}
                         path="/profile/:userId"
+                        id={"profileRoot"}
+                        loader={profileLoader}
+                        errorElement={<HandleException />}
                     >
                         <Route index element={<ProfileActivity />} />
                         <Route element={<ProfileParticipated />} path="participated" />

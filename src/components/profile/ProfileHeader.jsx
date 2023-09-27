@@ -3,17 +3,13 @@ import "./profile.css"
 import { ProfileContext } from "../../context/ProfileContext"
 import { ProfileNav } from "./ProfileNav"
 import { AuthContext } from "../../context/AuthContext"
+import { useLoaderData } from "react-router-dom"
 
 const ProfileHeader = () => {
-    const { userId, profileData, fetchUserProfile, fetchParticipatedStudies, fetchAuthoredStudies } = useContext(ProfileContext)
+    const profileData = useLoaderData()
+    const { userId, fetchParticipatedStudies, fetchAuthoredStudies } = useContext(ProfileContext)
     const { fetchCurrentUserId } = useContext(AuthContext)
 
-    useEffect(
-        () => {
-            fetchUserProfile()
-        },
-        [fetchUserProfile]
-    )
     useEffect(
         () => {
             fetchParticipatedStudies()

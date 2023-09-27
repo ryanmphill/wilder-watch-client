@@ -54,16 +54,63 @@
     justify-content: space-evenly;
     flex-wrap: nowrap;
     border-bottom: 1px solid rgba(143, 159, 174, 0.75);
-    height: 3.5rem;
+    height: 5rem;
     margin-bottom: 0.5rem;
 }
 
 .activity__stat {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
     border: 1px solid rgba(143, 159, 174, 0.75);
     width: 33.333333%;
+}
+
+.activity__stat__label {
+    border-bottom: 0.75px solid rgba(143, 159, 174, 0.75);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-size: x-small;
+}
+
+.activity__stat__data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-size: smaller;
+}
+
+@media (min-width: 415px) {
+    .activity__stat__label {
+        font-size: small;
+    }
+    .activity__stat__data {
+        font-size: smaller;
+    }
+}
+@media (min-width: 542px) {
+    .activity__stat__label {
+        font-size: medium;
+    }
+    .activity__stat__data {
+        font-size: medium;
+    }
+}
+@media (min-width: 600px) {
+    /* .activity__stat {
+        flex-direction: row;
+    } */
+    .activity__userStats {
+        height: 3.75rem;
+    }
+    .activity__stat__data {
+        font-weight: bold;
+    }
 }
 /*-------------------------------------------------------------------*/
 
