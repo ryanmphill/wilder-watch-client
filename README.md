@@ -32,7 +32,7 @@ Users can:
     npm install
     ```
 
-2.  Next, pull down the [demo repository](https://github.com/ryanmphill/wilder-watch-demo-server) for the Django server
+2.  Next, pull down the [demo repository](https://github.com/ryanmphill/wilder-watch-demo-server) for the Django server. It is identical to the Django server used for production, except that it has a generic "secret key" used for development instead of the real thing.
 
     ```bash
     git clone git@github.com:ryanmphill/wilder-watch-demo-server.git
@@ -49,10 +49,16 @@ Users can:
     pipenv install
     ``` 
 
-    Finally, to get some dummy data, you can run this executable script
+    To get some dummy data, you can run this executable script:
 
     ```bash
     ./seed_data.sh
+    ```
+
+    Finally, you can get the server running locally on port 8000 with the following command:
+
+    ```bash
+    python3 manage.py runserver
     ```
 
 3.  This project uses **Mapbox-GL** and **react-map-gl** to display the geolocation data on a map. If you want to interact with the data via the maps API, you will need to create an account and get an API key from the [Mapbox](https://account.mapbox.com/auth/signup/)
@@ -72,7 +78,7 @@ website:
     VITE_MAPBOX_TOKEN = "<API KEY GOES HERE (without the brackets)>"
     ```
 
-4.  Now you can start up the Wilder Watch Client by running this command in the wilder-watch-client project directory:
+4.  Now you can start up the Wilder Watch Client locally on port 5173 by running this command in the wilder-watch-client project directory:
 
     ```bash
     npm run dev
