@@ -4,6 +4,7 @@ import { getAllRegions } from "../../managers/RegionManager";
 import { getAllStudyTypes } from "../../managers/StudyTypeManager";
 import { editStudy, getSingleStudy } from "../../managers/StudyManager";
 import "./studyForm.css"
+import { updateForm } from "../../utils/helpers/updateFormData";
 
 const EditStudyForm = () => {
     const { studyId } = useParams()
@@ -62,15 +63,6 @@ const EditStudyForm = () => {
         []
     )
 
-    const updateForm = (e, updateFunc, dataType) => {
-        let studyCopy = { ...study };
-        if (dataType === "str") {
-            updateFunc({ ...studyCopy, [e.target.name]: e.target.value });
-        } else if (dataType === "int") {
-            updateFunc({ ...studyCopy, [e.target.name]: parseInt(e.target.value) });
-        }
-    }
-
     const handleSaveStudy = async (e) => {
         e.preventDefault();
         const requiredStr = ['title', 'subject', 'summary', 'details', 'startDate']
@@ -110,7 +102,7 @@ const EditStudyForm = () => {
                         className="studyForm__control"
                         placeholder="Add a title for your study"
                         value={study.title}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
                 {focusedError.includes("title") && 
@@ -130,7 +122,7 @@ const EditStudyForm = () => {
                         className="studyForm__control"
                         placeholder="What is the subject of the study?"
                         value={study.subject}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
                 {focusedError.includes("subject") && 
@@ -150,7 +142,7 @@ const EditStudyForm = () => {
                         className="studyForm__control studyForm--textarea"
                         placeholder="Write a summary to help users understand the study"
                         value={study.summary}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     >
                     </textarea>
                 </div>
@@ -171,7 +163,7 @@ const EditStudyForm = () => {
                         className="studyForm__control studyForm--textarea"
                         placeholder="Help your users understand what you are asking of them."
                         value={study.details}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     >
                     </textarea>
                 </div>
@@ -191,7 +183,7 @@ const EditStudyForm = () => {
                         name="startDate"
                         className="studyForm__control"
                         value={study.startDate}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
                 {focusedError.includes("startDate") && 
@@ -210,7 +202,7 @@ const EditStudyForm = () => {
                         name="endDate"
                         className="studyForm__control"
                         value={study.endDate}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
             </fieldset>
@@ -223,7 +215,7 @@ const EditStudyForm = () => {
                             id="selectstudyTypeId"
                             name="studyTypeId"
                             value={study.studyTypeId}
-                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            onChange={(e) => updateForm(e, study, updateStudy, "int")}
                             className="studyForm__control"
                         >
                             <option value="0">Select Type of Study</option>
@@ -252,7 +244,7 @@ const EditStudyForm = () => {
                             id="selectregionId"
                             name="regionId"
                             value={study.regionId}
-                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            onChange={(e) => updateForm(e, study, updateStudy, "int")}
                             className="studyForm__control"
                         >
                             <option value="0">Select a region</option>
@@ -284,7 +276,7 @@ const EditStudyForm = () => {
                         className="studyForm__control"
                         placeholder="Add an image url (optional)"
                         value={study.imageUrl}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
             </fieldset>
