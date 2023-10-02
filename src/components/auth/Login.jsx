@@ -58,13 +58,13 @@ export const Login = () => {
         <h3 className="authFormSubHeader">Please Sign In</h3>
 
         <div className="authForm__field">
-          <label className="authForm__label">Username</label>
-            <input className="authForm__control" type="text" ref={username} />
+          <label className="authForm__label" htmlFor="login__username">Username</label>
+            <input className="authForm__control" id="login__username" type="text" ref={username} />
         </div>
 
         <div className="authForm__field">
-          <label className="authForm__label">Password</label>
-            <input className="authForm__control" type="password" ref={password} />
+          <label className="authForm__label" htmlFor="login__password">Password</label>
+            <input className="authForm__control" id="login__password" type="password" ref={password} />
         </div>
 
         <div className="authForm__btnGroup">
@@ -79,7 +79,7 @@ export const Login = () => {
           </div>
         </div>
         {
-          isUnsuccessful ? <p className="warning__msg">Username or password not valid</p> : ''
+          isUnsuccessful ? <p className="error-message">Username or password not valid</p> : ''
         }
       </form>
     </section>

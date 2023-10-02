@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllRegions } from "../../managers/RegionManager";
 import { getAllStudyTypes } from "../../managers/StudyTypeManager";
 import "./studyForm.css"
+import { updateForm } from "../../utils/helpers/updateFormData";
 
 const CreateStudyForm = () => {
     const [study, updateStudy] = useState({
@@ -20,6 +21,7 @@ const CreateStudyForm = () => {
     const [regions, setRegions] = useState([])
     const [studyTypes, setStudyTypes] = useState([])
     const [formError, setFormError] = useState(false);
+    const [focusedError, setFocusedError] = useState([]);
     const navigate = useNavigate()
 
     useEffect(
@@ -35,15 +37,6 @@ const CreateStudyForm = () => {
         []
     )
 
-    const updateForm = (e, updateFunc, dataType) => {
-        let studyCopy = { ...study };
-        if (dataType === "str") {
-            updateFunc({ ...studyCopy, [e.target.name]: e.target.value });
-        } else if (dataType === "int") {
-            updateFunc({ ...studyCopy, [e.target.name]: parseInt(e.target.value) });
-        }
-    }
-
     const handleSaveStudy = async (e) => {
         e.preventDefault();
         const requiredStr = ['title', 'subject', 'summary', 'details', 'startDate']
@@ -52,6 +45,10 @@ const CreateStudyForm = () => {
 
         if (!formFilled) {
             setFormError(true);
+            const missingStr = requiredStr.filter(field => study[field].length === 0)
+            const missingNum = requiredNum.filter(field => study[field] === 0)
+            const missingFields = missingStr.concat(missingNum)
+            setFocusedError(missingFields)
             return;
         }
 
@@ -81,9 +78,13 @@ const CreateStudyForm = () => {
                         className="studyForm__control"
                         placeholder="Add a title for your study"
                         value={study.title}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("title") && 
+                <div className="error-message">
+                    ** Please enter a title **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -97,9 +98,13 @@ const CreateStudyForm = () => {
                         className="studyForm__control"
                         placeholder="What is the subject of the study?"
                         value={study.subject}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("subject") && 
+                <div className="error-message">
+                    ** Please enter a subject **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -113,10 +118,14 @@ const CreateStudyForm = () => {
                         className="studyForm__control studyForm--textarea"
                         placeholder="Write a summary to help users understand the study"
                         value={study.summary}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     >
                     </textarea>
                 </div>
+                {focusedError.includes("summary") && 
+                <div className="error-message">
+                    ** Please include a summary **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -130,10 +139,14 @@ const CreateStudyForm = () => {
                         className="studyForm__control studyForm--textarea"
                         placeholder="Help your users understand what you are asking of them."
                         value={study.details}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     >
                     </textarea>
                 </div>
+                {focusedError.includes("details") && 
+                <div className="error-message">
+                    ** Please provide some details for your study **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -146,9 +159,13 @@ const CreateStudyForm = () => {
                         name="startDate"
                         className="studyForm__control"
                         value={study.startDate}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("startDate") && 
+                <div className="error-message">
+                    ** Please provide a starting date **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -161,7 +178,7 @@ const CreateStudyForm = () => {
                         name="endDate"
                         className="studyForm__control"
                         value={study.endDate}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
             </fieldset>
@@ -174,7 +191,7 @@ const CreateStudyForm = () => {
                             id="selectstudyTypeId"
                             name="studyTypeId"
                             value={study.studyTypeId}
-                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            onChange={(e) => updateForm(e, study, updateStudy, "int")}
                             className="studyForm__control"
                         >
                             <option value="0">Select Type of Study</option>
@@ -188,6 +205,10 @@ const CreateStudyForm = () => {
                             ))}
                         </select>
                     </div>
+                    {focusedError.includes("studyTypeId") && 
+                    <div className="error-message">
+                        ** Please select a study type **
+                    </div>}
                 </fieldset>
 
                 <fieldset className="studyForm__flexChild">
@@ -199,7 +220,7 @@ const CreateStudyForm = () => {
                             id="selectregionId"
                             name="regionId"
                             value={study.regionId}
-                            onChange={(e) => updateForm(e, updateStudy, "int")}
+                            onChange={(e) => updateForm(e, study, updateStudy, "int")}
                             className="studyForm__control"
                         >
                             <option value="0">Select a region</option>
@@ -213,6 +234,10 @@ const CreateStudyForm = () => {
                             ))}
                         </select>
                     </div>
+                    {focusedError.includes("regionId") && 
+                    <div className="error-message">
+                        ** Please select a region **
+                    </div>}
                 </fieldset>
             </div>
 
@@ -227,7 +252,7 @@ const CreateStudyForm = () => {
                         className="studyForm__control"
                         placeholder="Add an image url (optional)"
                         value={study.imageUrl}
-                        onChange={(e) => updateForm(e, updateStudy, "str")}
+                        onChange={(e) => updateForm(e, study, updateStudy, "str")}
                     />
                 </div>
             </fieldset>
@@ -247,7 +272,7 @@ const CreateStudyForm = () => {
                 </button>
             </div>
 
-            {formError && <div className="alert alert-danger">Please fill in all of the required fields.</div>}
+            {formError && <div className="error-message">** Please fill in all of the required fields **</div>}
         </form>
     </article>
 }

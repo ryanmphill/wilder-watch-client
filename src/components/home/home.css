@@ -4,10 +4,7 @@
 
 /*HeroImg------------------------------------------------------*/
 .home__heroImg {
-    /* background-color: rgb(253, 181, 93); */
-    /* background-color: #f36e21; */
     background-color: #889884;
-    /* background-image: url("https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"); */
     background-image: url("../../assets/hero1.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -22,7 +19,6 @@
 }
 
 .home__lockContainer {
-    /* border: 1px dashed white; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,12 +34,12 @@
     .home__lockContainer {
         width: 36%;
         padding-bottom: 7rem;
+        animation: fadeIn 4.0s;
     }
 }
 
 .home__lock {
     width: 100%;
-    animation: fadeIn 5.0s;
     animation: slide-hero 1.5s both;
 }
 
@@ -96,9 +92,7 @@
     width: 95%;
     background-color: #889884;
     background-image: linear-gradient(45deg, #142321 -150%, #889884  100%);
-    /**/
     background-color: #142321;
-    /* box-shadow: -1px 1px 10px rgba(136,152,132, 0.25); */
 }
 
 .home__studyCard h3 {
@@ -117,7 +111,6 @@
     position: relative;
     width: 100%;
     height: 0;
-    /* padding-bottom: 100%; */
     padding-bottom: 40%;
     padding-top: 40%;
     background-color: #c9d3d2;

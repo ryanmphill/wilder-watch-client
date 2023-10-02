@@ -4,45 +4,48 @@ import { useState } from "react";
 import ObservationFormMap from "./ObservationFormMap";
 import "./observationForm.css"
 import "../studyForm.css"
+import { updateForm } from "../../../utils/helpers/updateFormData";
 
 const AddObservation = () => {
     const { studyId } = useParams()
     const [showMap, setShowMap] = useState(false)
     const [observation, updateObservation] = useState({
-        latitude: 0,
-        longitude: 0,
+        latitude: "",
+        longitude: "",
         description: "",
         image: "",
         date: ""
     })
     
     const [formError, setFormError] = useState(false);
+    const [focusedError, setFocusedError] = useState([]);
     const navigate = useNavigate()
-
-    const updateForm = (e, updateFunc, dataType) => {
-        let copy = { ...observation };
-        if (dataType === "str") {
-            updateFunc({ ...copy, [e.target.name]: e.target.value });
-        } else if (dataType === "int") {
-            updateFunc({ ...copy, [e.target.name]: parseInt(e.target.value) });
-        } else if (dataType === "float") {
-            if (e.target.value !== "") {
-                updateFunc({ ...copy, [e.target.name]: parseFloat(e.target.value) });
-            } else { // Change value to zero when all info in input is backspaced
-                updateFunc({ ...copy, [e.target.name]: 0 });
-            }
-        }
-    }
 
     const handleSaveObservation = async (e) => {
         e.preventDefault();
+        // Define requirements for form submission
         const requiredStr = ['date']
-        const formFilled = requiredStr.every(field => observation[field].length > 0)
-
-        if (!formFilled) {
+        const requiredNum = typeof observation.longitude === "number" && typeof observation.latitude === "number"
+        const formFilled = requiredStr.every(field => observation[field].length > 0) && requiredNum === true
+        const validLon = observation.longitude >= -180 && observation.longitude <= 180 && typeof observation.longitude === "number"
+        const validLat = observation.latitude > -90 && observation.latitude < 90 && typeof observation.latitude === "number"
+        // Validate user input
+        if (!formFilled || !validLon || !validLat) {
+            const focusedErrors = [];
             setFormError(true);
+            if (observation["date"].length === 0) {
+                focusedErrors.push("date")
+            };
+            if (!validLon) {
+                focusedErrors.push("longitude")
+            };
+            if (!validLat) {
+                focusedErrors.push("latitude")
+            };
+            setFocusedError(focusedErrors)
             return;
         }
+        
 
         // Send the new observation to the API
         try {
@@ -67,10 +70,14 @@ const AddObservation = () => {
                         name="latitude"
                         className="studyForm__control"
                         placeholder=""
-                        value={observation.latitude !== 0 ? observation.latitude : ""}
-                        onChange={(e) => updateForm(e, updateObservation, "float")}
+                        value={observation.latitude}
+                        onChange={(e) => updateForm(e, observation, updateObservation, "float")}
                     />
                 </div>
+                {focusedError.includes("latitude") && 
+                <div className="error-message">
+                    ** Please enter a valid latitude in the range between -90 and +90 degrees. Latitudes in close proximity to the poles may not be visible on the map. **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -83,10 +90,11 @@ const AddObservation = () => {
                         name="longitude"
                         className="studyForm__control"
                         placeholder=""
-                        value={observation.longitude !== 0 ? observation.longitude : ""}
-                        onChange={(e) => updateForm(e, updateObservation, "float")}
+                        value={observation.longitude}
+                        onChange={(e) => updateForm(e, observation, updateObservation, "float")}
                     />
                 </div>
+                {focusedError.includes("longitude") && <div className="error-message">** Please enter a valid longitude in the range between -180 and +180 degrees **</div>}
             </fieldset>
             
             {!showMap
@@ -113,7 +121,7 @@ const AddObservation = () => {
                         className="studyForm__control studyForm--textarea"
                         placeholder="Write a brief description of what you observed"
                         value={observation.description}
-                        onChange={(e) => updateForm(e, updateObservation, "str")}
+                        onChange={(e) => updateForm(e, observation, updateObservation, "str")}
                     >
                     </textarea>
                 </div>
@@ -129,9 +137,10 @@ const AddObservation = () => {
                         name="date"
                         className="studyForm__control"
                         value={observation.date}
-                        onChange={(e) => updateForm(e, updateObservation, "str")}
+                        onChange={(e) => updateForm(e, observation, updateObservation, "str")}
                     />
                 </div>
+                {focusedError.includes("date") && <div className="error-message">** Please enter the date of your observation **</div>}
             </fieldset>
 
             <fieldset>
@@ -145,7 +154,7 @@ const AddObservation = () => {
                         className="studyForm__control"
                         placeholder="Add an image url (optional)"
                         value={observation.image}
-                        onChange={(e) => updateForm(e, updateObservation, "str")}
+                        onChange={(e) => updateForm(e, observation, updateObservation, "str")}
                     />
                 </div>
             </fieldset>
@@ -165,7 +174,7 @@ const AddObservation = () => {
                 </button>
             </div>
 
-            {formError && <div className="alert alert-danger">Please fill in all of the required fields.</div>}
+            {formError && <div className="error-message">** Please provide a valid input for all of the required fields. **</div>}
         </form>
     </article>
 }

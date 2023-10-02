@@ -10,7 +10,7 @@
 
 .profile__header__info {
     width: 50%;
-    animation: slide-left 1.0s both;
+    animation: slide-left 1.0s both, fadeIn 1.75s;
 }
 
 /* profile image styles ---------------------------------------------*/

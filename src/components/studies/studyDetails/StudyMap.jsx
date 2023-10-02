@@ -33,7 +33,6 @@ import Map, {
         observations.forEach((obs) => {
           mapBounds.extend([obs.longitude, obs.latitude])
         })
-        console.log(mapBounds)
         return mapBounds
         // If there are no observations yet, set initialMapBounds to null 
       } else if (observations.length < 1) {
