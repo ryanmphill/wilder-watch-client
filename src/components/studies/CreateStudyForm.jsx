@@ -20,6 +20,7 @@ const CreateStudyForm = () => {
     const [regions, setRegions] = useState([])
     const [studyTypes, setStudyTypes] = useState([])
     const [formError, setFormError] = useState(false);
+    const [focusedError, setFocusedError] = useState([]);
     const navigate = useNavigate()
 
     useEffect(
@@ -52,6 +53,10 @@ const CreateStudyForm = () => {
 
         if (!formFilled) {
             setFormError(true);
+            const missingStr = requiredStr.filter(field => study[field].length === 0)
+            const missingNum = requiredNum.filter(field => study[field] === 0)
+            const missingFields = missingStr.concat(missingNum)
+            setFocusedError(missingFields)
             return;
         }
 
@@ -84,6 +89,10 @@ const CreateStudyForm = () => {
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("title") && 
+                <div className="error-message">
+                    ** Please enter a title **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -100,6 +109,10 @@ const CreateStudyForm = () => {
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("subject") && 
+                <div className="error-message">
+                    ** Please enter a subject **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -117,6 +130,10 @@ const CreateStudyForm = () => {
                     >
                     </textarea>
                 </div>
+                {focusedError.includes("summary") && 
+                <div className="error-message">
+                    ** Please include a summary **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -134,6 +151,10 @@ const CreateStudyForm = () => {
                     >
                     </textarea>
                 </div>
+                {focusedError.includes("details") && 
+                <div className="error-message">
+                    ** Please provide some details for your study **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -149,6 +170,10 @@ const CreateStudyForm = () => {
                         onChange={(e) => updateForm(e, updateStudy, "str")}
                     />
                 </div>
+                {focusedError.includes("startDate") && 
+                <div className="error-message">
+                    ** Please provide a starting date **
+                </div>}
             </fieldset>
 
             <fieldset>
@@ -188,6 +213,10 @@ const CreateStudyForm = () => {
                             ))}
                         </select>
                     </div>
+                    {focusedError.includes("studyTypeId") && 
+                    <div className="error-message">
+                        ** Please select a study type **
+                    </div>}
                 </fieldset>
 
                 <fieldset className="studyForm__flexChild">
@@ -213,6 +242,10 @@ const CreateStudyForm = () => {
                             ))}
                         </select>
                     </div>
+                    {focusedError.includes("regionId") && 
+                    <div className="error-message">
+                        ** Please select a region **
+                    </div>}
                 </fieldset>
             </div>
 
@@ -247,7 +280,7 @@ const CreateStudyForm = () => {
                 </button>
             </div>
 
-            {formError && <div className="alert alert-danger">Please fill in all of the required fields.</div>}
+            {formError && <div className="error-message">** Please fill in all of the required fields **</div>}
         </form>
     </article>
 }
