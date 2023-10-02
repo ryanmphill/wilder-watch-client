@@ -41,7 +41,7 @@ const ProfileHeader = () => {
                         </div>
                     }
                 </div>
-                <div className="profile__header__info fadeIn">
+                <div className="profile__header__info">
                     <header>
                         <h2>{profileData.full_name}</h2>
                         {profileData.flair &&
