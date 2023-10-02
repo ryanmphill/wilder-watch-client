@@ -38,12 +38,12 @@
     .home__lockContainer {
         width: 36%;
         padding-bottom: 7rem;
+        animation: fadeIn 4.0s;
     }
 }
 
 .home__lock {
     width: 100%;
-    animation: fadeIn 5.0s;
     animation: slide-hero 1.5s both;
 }
 
