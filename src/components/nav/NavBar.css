@@ -4,7 +4,6 @@
     justify-content: flex-start;
     padding: 0 0.75rem 0 0.25rem;
     animation: navFade 0.75s;
-    /* background-color: lightgray; */
     background-color: #142321;
     margin-top: 0;
     margin-bottom: 0;
@@ -20,7 +19,6 @@
     flex-basis: 20%;
     list-style-type: none;
     min-width: 15%;
-    /* border: 1px dashed darkslategray; */
 }
 
 .navbar__menu {
