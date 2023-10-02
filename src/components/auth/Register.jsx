@@ -16,12 +16,19 @@ export const Register = () => {
   const password = useRef()
   const verifyPassword = useRef()
   const [showPasswordDialog, setShowDialog] = useState(false)
+  const [showFormFilledMsg, setShowFormFilledMsg] = useState(false)
   const navigate = useNavigate()
 
   const handleRegister = async (e) => {
     e.preventDefault()
 
-    if (password.current.value === verifyPassword.current.value) {
+    setShowDialog(false)
+    setShowFormFilledMsg(false)
+
+    const fields = [firstName, lastName, email, username, password]
+    const formFilled = fields.every(field => field.current.value.length > 0)
+
+    if (password.current.value === verifyPassword.current.value && formFilled === true) {
       const newUser = {
         username: username.current.value,
         first_name: firstName.current.value,
@@ -42,7 +49,12 @@ export const Register = () => {
       }
         
     } else {
-      setShowDialog(true)
+      if (password.current.value !== verifyPassword.current.value) {
+        setShowDialog(true)
+      }
+      if (!formFilled) {
+        setShowFormFilledMsg(true)
+      }
     }
   }
 
@@ -58,31 +70,31 @@ export const Register = () => {
         </div>
         <h3 className="authFormSubHeader">Create an account</h3>
         <div className="authForm__field">
-          <label className="authForm__label">First Name</label>
-            <input className="authForm__control" type="text" ref={firstName} />
+          <label className="authForm__label" htmlFor="register__firsName">First Name</label>
+            <input className="authForm__control" id="register__firsName" type="text" ref={firstName} />
         </div>
 
         <div className="authForm__field">
-          <label className="authForm__label">Last Name</label>
-            <input className="authForm__control" type="text" ref={lastName} />
+          <label className="authForm__label" htmlFor="register__lastName">Last Name</label>
+            <input className="authForm__control" id="register__lastName" type="text" ref={lastName} />
         </div>
 
         <div className="authForm__field">
-          <label className="authForm__label">Username</label>
-            <input className="authForm__control" type="text" ref={username} />
+          <label className="authForm__label" htmlFor="register__username">Username</label>
+            <input className="authForm__control" id="register__username" type="text" ref={username} />
         </div>
 
         <div className="authForm__field">
-          <label className="authForm__label">Email</label>
-            <input className="authForm__control" type="email" ref={email} />
+          <label className="authForm__label" htmlFor="register__email">Email</label>
+            <input className="authForm__control" id="register__email" type="email" ref={email} />
         </div>
 
         <div className="authForm__field">
-          <label className="authForm__label">Password</label>
+          <label className="authForm__label" htmlFor="register__password">Password</label>
           <div className="authForm__field-body">
             <div className="authForm__field">
               <p>
-                <input className="authForm__control" type="password" placeholder="Password" ref={password} />
+                <input className="authForm__control" id="register__password" type="password" placeholder="Password" ref={password} />
               </p>
             </div>
 
@@ -96,8 +108,14 @@ export const Register = () => {
 
         {
           showPasswordDialog &&
-          <div className="warning__msg">
-            Password authForm__fields must be matching
+          <div className="error-message">
+            ** Password fields must be matching **
+          </div>
+        }
+        {
+          showFormFilledMsg &&
+          <div className="error-message">
+            ** Please ensure all fields are filled in **
           </div>
         }
 
