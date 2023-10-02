@@ -43,7 +43,6 @@ const AddObservation = () => {
         const formFilled = requiredStr.every(field => observation[field].length > 0) && requiredNum === true
         const validLon = observation.longitude >= -180 && observation.longitude <= 180 && typeof observation.longitude === "number"
         const validLat = observation.latitude > -90 && observation.latitude < 90 && typeof observation.latitude === "number"
-        console.log(validLat)
         // Validate user input
         if (!formFilled || !validLon || !validLat) {
             const focusedErrors = [];
