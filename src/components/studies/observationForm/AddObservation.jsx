@@ -174,7 +174,7 @@ const AddObservation = () => {
                 </button>
             </div>
 
-            {formError && <div className="error-message">** Please provide a valid input all of the required fields. **</div>}
+            {formError && <div className="error-message">** Please provide a valid input for all of the required fields. **</div>}
         </form>
     </article>
 }
