@@ -54,7 +54,7 @@ export const DropdownMenu = ({ refreshUser }) => {
 
     return (
       <div className="dropdown">
-        <button className="dropdown-button" onClick={toggleDropdown}>
+        <button className="dropdown-button" role="button" name="hamburger menu" onClick={toggleDropdown}>
           <img src={burgerIcon} alt="hamburger menu" id="hamburger"></img>
         </button>
         {isOpen && <>
