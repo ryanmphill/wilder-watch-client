@@ -92,6 +92,14 @@ website:
 #### Having trouble getting started?
 Please reach out to me or open an issue, and I will try to resolve it ASAP.
 
+## Testing WilderWatch Client
+
+If you would like to experiment with the source code and make sure no breaking changes are introduced, you can run the test suite locally:
+
+```bash
+npm run test
+```
+
 ## Main Feed
 
 ![feed view](public/screenshots/feed.png)
