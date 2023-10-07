@@ -58,7 +58,7 @@ export const Home = () => {
                             </div>
                         }
                         <div className="home__studyCard__info">
-                            <div><Link className="home__studyCard__title" to={`study/${study.id}`}>{study.title}</Link></div>
+                            <div><h3><Link className="home__studyCard__title" to={`study/${study.id}`}>{study.title}</Link></h3></div>
                             <div>Subject: {study.subject}</div>
                             <div>Category: {study?.study_type?.label}</div>
                         </div>

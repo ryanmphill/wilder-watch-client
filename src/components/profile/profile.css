@@ -186,6 +186,7 @@
 .profile__studyCard__title {
     color: rgba(255, 255, 255, 0.87);
     font-weight: bold;
+    font-size: 1.05rem;
 }
 
 .profile__studyCard__title:hover {
