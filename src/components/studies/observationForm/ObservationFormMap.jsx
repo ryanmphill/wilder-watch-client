@@ -32,7 +32,6 @@ import Map, {
     useEffect(
         () => {
             if (locateControlMounted && !locationLoaded) {
-                console.log("location controls mounted")
                 geoControlRef.current?.trigger();
                 setLocationLoaded(true)
             }
