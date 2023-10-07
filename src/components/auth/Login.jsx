@@ -35,16 +35,7 @@ export const Login = () => {
       window.alert("An error occured while logging in")
     }
   }
-  /*--------------------------------------------------------------------*/
-  // Autofill Username/Password by default streamline devolopment process 
-  useEffect(
-    () => {
-      username.current.value = "ryanmphill"
-      password.current.value = "password"
-    },
-    []
-  )
-  /*--------------------------------------------------------------------*/
+  
   return (
     <section className="authFormContainer fadeIn">
       <form className="authForm loginForm" onSubmit={handleLogin}>
