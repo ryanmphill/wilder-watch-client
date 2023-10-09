@@ -28,46 +28,48 @@ const ProfileAuthored = () => {
                 <section className="profile__studyCard__flexContainer">
                 {
                     authoredStudies.map(study => 
-                    <div className="profile__studyCard" key={`authored--${study.id}`}>
-                        {
-                            study.image_url &&
-                            <div className="profile__studyCard__imgContainer">
-                                <div className="profile__studyCard__imgWrapper">
-                                    <img className="profile__studyCard--img" src={study.image_url} alt="authored study"></img>
+                        <div className="profile__studyCard" key={`authored--${study.id}`}>
+                            <div className="profile__studyCard__body">
+                                {
+                                    study.image_url &&
+                                    <div className="profile__studyCard__imgContainer">
+                                        <div className="profile__studyCard__imgWrapper">
+                                            <img className="profile__studyCard--img" src={study.image_url} alt="authored study"></img>
+                                        </div>
+                                    </div>
+                                }
+                                <div className="profile__studyCard__info">
+                                    <div><h3><Link className="profile__studyCard__title" to={`/study/${study.id}`}>{study.title}</Link></h3></div>
+                                    <div>Subject: {study.subject}</div>
+                                    <div>Category: {study?.study_type?.label}</div>
                                 </div>
                             </div>
-                        }
-                        <div className="profile__studyCard__info">
-                            <div><h3><Link className="profile__studyCard__title" to={`/study/${study.id}`}>{study.title}</Link></h3></div>
-                            <div>Subject: {study.subject}</div>
-                            <div>Category: {study?.study_type?.label}</div>
-                        </div>
-                        <footer className="profile__studyCard--footer">
-                            {
-                                study?.author?.id === currentUserId &&
-                                <>
-                                    {
-                                        study.id !== confirmation
-                                            ? <>
-                                                <button className="iconbtn__edit fadeIn" onClick={() => navigate(`/study/edit/${study.id}`)}>
-                                                    <img className="iconbtn__edit--img fadeIn" src={editIcon} alt="edit"></img>
-                                                </button>
-                                                <button className="iconbtn__dlt fadeIn" onClick={() => showConfirmation(study.id)}>
-                                                    <img className="iconbtn__dlt--img fadeIn" src={deleteIcon} alt="delete"></img>
-                                                </button>
-                                              </>
-                                            : <>
-                                                <p className="profile__studyCard__dltPrompt fadeIn">Are you sure?</p>
-                                                <button className="btn__small fadeIn" onClick={() => { handleDeleteClick(study.id) }}
-                                                >Delete</button>
-                                                <button className="btn__cancel__small fadeIn" onClick={() => showConfirmation(0)}>Cancel</button>
-                                            </>
-                                    }
+                            <footer className="profile__studyCard--footer">
+                                {
+                                    study?.author?.id === currentUserId &&
+                                    <>
+                                        {
+                                            study.id !== confirmation
+                                                ? <>
+                                                    <button className="iconbtn__edit fadeIn" onClick={() => navigate(`/study/edit/${study.id}`)}>
+                                                        <img className="iconbtn__edit--img fadeIn" src={editIcon} alt="edit"></img>
+                                                    </button>
+                                                    <button className="iconbtn__dlt fadeIn" onClick={() => showConfirmation(study.id)}>
+                                                        <img className="iconbtn__dlt--img fadeIn" src={deleteIcon} alt="delete"></img>
+                                                    </button>
+                                                </>
+                                                : <>
+                                                    <p className="profile__studyCard__dltPrompt fadeIn">Are you sure?</p>
+                                                    <button className="btn__small fadeIn" onClick={() => { handleDeleteClick(study.id) }}
+                                                    >Delete</button>
+                                                    <button className="btn__cancel__small fadeIn" onClick={() => showConfirmation(0)}>Cancel</button>
+                                                </>
+                                        }
 
-                                </>
-                            }
-                        </footer>
-                    </div>)
+                                    </>
+                                }
+                            </footer>
+                        </div>)
                 }
                 </section>
         </article>

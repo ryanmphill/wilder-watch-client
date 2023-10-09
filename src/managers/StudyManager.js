@@ -1,5 +1,7 @@
+import { apiUrl } from "../utils/config/apiConfig";
+
 export const getAllStudies = async () => {
-    const res = await fetch(`http://localhost:8000/studies`, {
+    const res = await fetch(`${apiUrl}/studies`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -10,7 +12,7 @@ export const getAllStudies = async () => {
 }
 
 export const getSingleStudy = async (id) => {
-    const res = await fetch(`http://localhost:8000/studies/${id}`, {
+    const res = await fetch(`${apiUrl}/studies/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +24,7 @@ export const getSingleStudy = async (id) => {
 
 export const studyLoader = async ({ params }) => {
   // The errorElement automatically catches any exceptions
-  const res = await fetch(`http://localhost:8000/studies/${params.studyId}`, {
+  const res = await fetch(`${apiUrl}/studies/${params.studyId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +39,7 @@ export const studyLoader = async ({ params }) => {
 }
 
 export const createNewStudy = async (newStudy) => {
-  const res = await fetch(`http://localhost:8000/studies`, {
+  const res = await fetch(`${apiUrl}/studies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +52,7 @@ export const createNewStudy = async (newStudy) => {
 }
 
 export const editStudy = async (updatedStudy, pk) => {
-  const res = await fetch(`http://localhost:8000/studies/${pk}`, {
+  const res = await fetch(`${apiUrl}/studies/${pk}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +67,7 @@ export const editStudy = async (updatedStudy, pk) => {
 }
 
 export const deleteStudy = async (pk) => {
-  const res = await fetch(`http://localhost:8000/studies/${pk}`, {
+  const res = await fetch(`${apiUrl}/studies/${pk}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
