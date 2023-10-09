@@ -1,7 +1,7 @@
 ###### <p align="right">![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ryanmphill/wilder-watch-client/build_test.yml?label=Tests) </p>
 
 
-# Wilder Watch
+# [Wilder Watch](https://wilderwatch-jekt4.ondigitalocean.app/) 🔗
 
 Wilder Watch is an application that allows citizen scientists and nature enthusiasts to track wildlife by creating and participating in geotagging studies. Scientists and researchers work hard to gather and interpret data that can help us make informed decisions for the future, but not all science happens with white coats and lab experiments. Oftentimes, the best way to collect data is by enlisting everyday individuals via citizen science projects. Land managers might need to monitor the impact a new development is having on the local marmot population, but aren’t able to cover enough ground to get meaningful information. With WilderWatch, the managers can quickly launch their study to our citizen scientist community, and the hundreds of hikers that frequent the park can record the geolocation of their sightings and provide the quality data the researchers are looking for.
 
@@ -21,7 +21,7 @@ Users can:
  - View the stats of user activity on user profile pages
 
  ## View Deployed Project
- _Coming soon!_
+[Click here to view deployed project](https://wilderwatch-jekt4.ondigitalocean.app/)
 
  ## Installations and instructions to view on local machine
 
