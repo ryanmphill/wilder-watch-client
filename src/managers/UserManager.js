@@ -1,6 +1,8 @@
+import { apiUrl } from "../utils/config/apiConfig";
+
 export const profileLoader = async ({ params }) => {
   // The errorElement automatically catches any exceptions
-  const res = await fetch(`http://localhost:8000/users/${params.userId}`, {
+  const res = await fetch(`${apiUrl}/users/${params.userId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +17,7 @@ export const profileLoader = async ({ params }) => {
 }
 
 export const getSingleUser = async (id) => {
-    const res = await fetch(`http://localhost:8000/users/${id}`, {
+    const res = await fetch(`${apiUrl}/users/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +28,7 @@ export const getSingleUser = async (id) => {
 }
 
 export const getStudiesParticipated = async (id) => {
-    const res = await fetch(`http://localhost:8000/users/${id}/participated_studies`, {
+    const res = await fetch(`${apiUrl}/users/${id}/participated_studies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +39,7 @@ export const getStudiesParticipated = async (id) => {
 }
 
 export const getStudiesAuthored = async (id) => {
-    const res = await fetch(`http://localhost:8000/users/${id}/authored_studies`, {
+    const res = await fetch(`${apiUrl}/users/${id}/authored_studies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

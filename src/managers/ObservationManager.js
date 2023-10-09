@@ -1,5 +1,7 @@
+import { apiUrl } from "../utils/config/apiConfig";
+
 export const addObservation = async (observation, pk) => {
-    const res = await fetch(`http://localhost:8000/studies/${pk}/add_observation`, {
+    const res = await fetch(`${apiUrl}/studies/${pk}/add_observation`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

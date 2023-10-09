@@ -1,5 +1,7 @@
+import { apiUrl } from "../utils/config/apiConfig"
+
 export const loginUser = async (user) => {
-    const res = await fetch("http://localhost:8000/login", {
+    const res = await fetch(`${apiUrl}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,7 +16,7 @@ export const loginUser = async (user) => {
   }
   
   export const registerUser = async (newUser) => {
-    const res = await fetch("http://localhost:8000/register", {
+    const res = await fetch(`${apiUrl}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +28,7 @@ export const loginUser = async (user) => {
   }
 
   export const getCurrentUser = async () => {
-    const res = await fetch(`http://localhost:8000/users/current`, {
+    const res = await fetch(`${apiUrl}/users/current`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

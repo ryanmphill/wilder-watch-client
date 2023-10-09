@@ -1,5 +1,7 @@
+import { apiUrl } from "../utils/config/apiConfig";
+
 export const getAllStudyTypes = async () => {
-    const res = await fetch(`http://localhost:8000/study_types`, {
+    const res = await fetch(`${apiUrl}/study_types`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

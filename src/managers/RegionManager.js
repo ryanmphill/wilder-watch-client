@@ -1,5 +1,7 @@
+import { apiUrl } from "../utils/config/apiConfig";
+
 export const getAllRegions = async () => {
-    const res = await fetch(`http://localhost:8000/regions`, {
+    const res = await fetch(`${apiUrl}/regions`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
