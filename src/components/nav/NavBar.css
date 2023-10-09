@@ -33,6 +33,19 @@
     cursor: pointer;
 }
 
+@media (max-width: 326px) {
+    .navbar__logo {
+        height: inherit;
+        width: 2.5rem;
+    }
+}
+@media (max-width: 270px) {
+    .navbar__logo {
+        visibility: hidden;
+        width: 0;
+    }
+}
+
 #wilderTitle {
     cursor: pointer;
     color: #889884; 
