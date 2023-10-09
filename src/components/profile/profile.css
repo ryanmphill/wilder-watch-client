@@ -61,7 +61,6 @@
 .activity__stat {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     border: 1px solid rgba(143, 159, 174, 0.75);
     width: 33.333333%;
@@ -102,9 +101,6 @@
     }
 }
 @media (min-width: 600px) {
-    /* .activity__stat {
-        flex-direction: row;
-    } */
     .activity__userStats {
         height: 3.75rem;
     }
@@ -202,13 +198,8 @@
 }
 
 .profile__studyCard {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
     box-shadow: -1px 1px 4px rgba(41, 51, 51, 0.5);
     border-radius: 4px;
-    row-gap: 0.65rem;
-    column-gap: 0.45rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     padding: 0;
@@ -218,8 +209,17 @@
     background-color: #142321;
 }
 
+.profile__studyCard__body {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 0.65rem;
+    column-gap: 0.45rem;
+}
+
 .profile__studyCard h3 {
     margin: 0;
+    padding-bottom: 0.25rem;
 }
 
 .profile__studyCard__imgContainer {
@@ -280,9 +280,13 @@
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
+        align-items: stretch;
     }
 
     .profile__studyCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 47%;
     }
 }

@@ -49,18 +49,20 @@ export const Home = () => {
             {
                 studies.map((study) => 
                     <div className="home__studyCard fadeIn" key={`studyhome--${study.id}`}>
-                        {
-                            study.image_url &&
-                            <div className="home__studyCard__imgContainer">
-                                <div className="home__studyCard__imgWrapper">
-                                    <img className="home__studyCard--img" src={study.image_url} alt="study"></img>
+                        <div className="home__studyCard__body">
+                            {
+                                study.image_url &&
+                                <div className="home__studyCard__imgContainer">
+                                    <div className="home__studyCard__imgWrapper">
+                                        <img className="home__studyCard--img" src={study.image_url} alt="study"></img>
+                                    </div>
                                 </div>
+                            }
+                            <div className="home__studyCard__info">
+                                <div><h3><Link className="home__studyCard__title" to={`study/${study.id}`}>{study.title}</Link></h3></div>
+                                <div>Subject: {study.subject}</div>
+                                <div>Category: {study?.study_type?.label}</div>
                             </div>
-                        }
-                        <div className="home__studyCard__info">
-                            <div><h3><Link className="home__studyCard__title" to={`study/${study.id}`}>{study.title}</Link></h3></div>
-                            <div>Subject: {study.subject}</div>
-                            <div>Category: {study?.study_type?.label}</div>
                         </div>
                         <footer className="home__studyCard--footer">
                             {
