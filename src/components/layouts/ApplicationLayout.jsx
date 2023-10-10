@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, ScrollRestoration } from "react-router-dom"
 import { AuthProvider } from "../../context/AuthContext"
 
 const ApplicationLayout = () => {
@@ -6,6 +6,7 @@ const ApplicationLayout = () => {
         <AuthProvider>
             <Outlet />
         </AuthProvider>
+        <ScrollRestoration />
     </>
 }
 export default ApplicationLayout
