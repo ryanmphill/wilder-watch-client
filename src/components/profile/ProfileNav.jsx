@@ -23,7 +23,7 @@ export const ProfileNav = ({ profileId }) => {
         <button className={`profileNavLink profileNav--hoverEffect underline-effect ${currentPath === "activity" ? 'active' : ''}`}
             onClick={(e) => {
                 e.preventDefault()
-                navigate("")
+                navigate("", {preventScrollReset: true})
             }}>
             Activity
         </button>
@@ -33,7 +33,7 @@ export const ProfileNav = ({ profileId }) => {
         <button className={`profileNavLink profileNav--hoverEffect underline-effect ${currentPath === "participated" ? 'active' : ''}`}
             onClick={(e) => {
                 e.preventDefault()
-                navigate(`participated`)
+                navigate(`participated`, {preventScrollReset: true})
             }}>
             Studies Participated
         </button>
@@ -43,7 +43,7 @@ export const ProfileNav = ({ profileId }) => {
         <button className={`profileNavLink profileNav--hoverEffect underline-effect ${currentPath === "authored" ? 'active' : ''}`}
             onClick={(e) => {
                 e.preventDefault()
-                navigate(`authored`)
+                navigate(`authored`, {preventScrollReset: true})
             }}>
             Studies Authored
         </button>
