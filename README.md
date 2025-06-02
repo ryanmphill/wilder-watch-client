@@ -23,6 +23,13 @@ Users can:
  ## View Deployed Project
 [Click here to view deployed project](https://wilderwatch-jekt4.ondigitalocean.app/)
 
+### Test user credentials
+Here are some credentials for logging in as a test user to demo the app:
+
+**username**: ```willbrown```
+
+**password**: ```password```
+
  ## Installations and instructions to view on local machine
 
 1.  Pull down client-side repo and install dependencies for React in the wilder-watch-client directory:
